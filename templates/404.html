@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>404</title>
+    <link rel="stylesheet" href="https://dn-daoerror-page.qbox.me/bower_components/normalize-css/normalize.css">
+    <link rel="stylesheet" href="https://dn-daoerror-page.qbox.me/styles/css/main.css">
+    <script src="https://dn-daoerror-page.qbox.me/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://dn-daoerror-page.qbox.me/bower_components/parallax/deploy/jquery.parallax.js"></script>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?3cb9091189f56f2a704a01b5a9fbddb8";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <div id="container" class="error_404">
+        <ul id="scene">
+            <li class="layer" data-depth="0.10">
+                <div class="star diamond"></div>
+            </li>
+            <li class="layer" data-depth="0.30">
+                <div class="star dot"></div>
+            </li>
+            <li class="layer" data-depth="0.50">
+                <div class="star sparkle"></div>
+            </li>
+            <li class="layer" data-depth="0.05">
+                <div class="lighthouse"></div>
+            </li>
+            <li class="layer" data-depth="0.20">
+                <div class="wave dark-blue depth-20"></div>
+            </li>
+            <li class="layer" data-depth="0.40">
+                <div class="wave medium-blue depth-40"></div>
+            </li>
+            <li class="layer" data-depth="0.60">
+                <div class="wave light-blue depth-60"></div>
+            </li>
+            <li class="layer" data-depth="0.00">
+                <div class="error-message">
+                    <p>肆零肆，你见，或者不见，它就在这里。不悲，不喜。</p>
+                    <div class="button"><a href="/">回到首页</a></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        $('#scene').parallax({
+            invertX: false,
+            invertY: false,
+            limitX: false,
+            limitY: false,
+            scalarX: 10,
+            scalarY: 8,
+            frictionX: 0.5,
+            frictionY: 0.5
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="description" content="大雾实验工具：中科大大物实验的好帮手！网页版，免安装，免配置，一键使用！上传数据，自动分析，绘制图像，计算不确定度，生成计算公式……全方位满足你的需求！">
+    <meta name="keywords" content="USTC, 科大, 大雾实验工具, 大物实验工具, 大学物理实验">
+    <title>大雾实验工具-不确定度概观及常用表格</title>
+	<link rel="icon" href="/static/icon.jpg" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> -->
+    <style type="text/css">
+        a:link {color:DodgerBlue;}
+        a:visited {color:DodgerBlue;}
+        a:hover {color:Blue;}
+        a:active {color:Blue;}
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?3cb9091189f56f2a704a01b5a9fbddb8";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+	<ul class="layui-nav layui-nav-child-c" id="nav" style="display: none;">
+		<li class="layui-nav-item"><a href="https://feixu.site">飞旭</a></li>
+		<li class="layui-nav-item"><a href="https://myustc.feixu.site"">我的科大APP</a></li>
+		<li class="layui-nav-item layui-this"><a href="/">大雾实验工具</a></li>
+		<li class="layui-nav-item"><a href="https://wokebox.feixu.site">蜗壳作品集</a></li>
+		<li class="layui-nav-item"><a href="https://course.feixu.site">评课社区镜像站</a></li>
+	</ul>
+    <div class="layui-container" style="max-width: 700px; text-align: center;">
+        <br>
+        <h1>不确定度概观及常用表格</h1>
+        <hr>
+
+        <a style="font-size: 15px;" class="layui-btn layui-btn-primary layui-border-blue" onclick="guidance()">查看不确定度概观(仍在完善中)</a><br>
+        <img src="/static/uncertainty/常用仪器量具的主要技术要求和最大允差.png" width="650"><br>
+        <img src="/static/uncertainty/t与n的关系.png" width="650"><br>
+        <img src="/static/uncertainty/置信概率P和置信系数C.png" width="650"><br>
+        <img src="/static/uncertainty/常用函数不确定度传递公式.png" width="650"><br>
+        <img src="/static/uncertainty/常甪函数的不确定度算术合成公式.png" width="650"><br>
+        
+		<center><b><a style="line-height: 150%;" href="https://feixu.site" target="_blank">☆ 飞旭 ☆</a></b></center>
+        <center><b>开发团队</b><br>Sun Xulei | brealid | 秦沁 | 张学涵 | bztMinamoto</center>
+		<center><b>友情链接</b>：<a href="https://myustc.feixu.site" target="_blank">我的科大APP</a> | <a href="https://wokebox.feixu.site" target="_blank">蜗壳作品集</a></center>
+    </div>
+    
+    <canvas></canvas>
+    <script src="/static/canvas-nest.min.js"></script>
+    <script src="/static/layui/layui.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> -->
+    <script>
+        if (!(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))) document.getElementById("nav").style = "";
+        layui.use('util', function(){
+            var util = layui.util;
+            util.fixbar({
+              css: {right: 20, bottom: 70}
+            });
+        });
+        layui.use('element', function(){
+            var element = layui.element;
+        });
+        function guidance(){
+            if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))
+                if (navigator.userAgent.indexOf("Chrome") == -1)
+                    window.location.href = '/pdf-view?file=/static/uncertainty/不确定度概观.pdf';
+                else
+                    window.location.href = '/static/uncertainty/不确定度概观.pdf';
+            else
+                layer.open({
+                    type: 2,
+                    title: '实验指导',
+                    area: ['80%', '90%'],
+                    maxmin: true,
+                    shadeClose: true,
+                    content: '/pdf-view?file=/static/uncertainty/不确定度概观.pdf'
+                });
+        }
+    </script>
+</body>
+</html>

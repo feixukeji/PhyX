@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="description" content="大雾实验工具：中科大大物实验的好帮手！网页版，免安装，免配置，一键使用！上传数据，自动分析，绘制图像，计算不确定度，生成计算公式……全方位满足你的需求！">
+	<meta name="keywords" content="USTC, 科大, 大雾实验工具, 大物实验工具, 大学物理实验">
+	<title>大雾实验工具-中科大大物实验的好帮手</title>
+	<link rel="icon" href="/static/icon.jpg" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> -->
+    <style type="text/css">
+        a:link {color:DodgerBlue;}
+        a:visited {color:DodgerBlue;}
+        a:hover {color:Blue;}
+        a:active {color:Blue;}
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?3cb9091189f56f2a704a01b5a9fbddb8";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+	<ul class="layui-nav layui-nav-child-c" id="nav" style="display: none;">
+		<li class="layui-nav-item"><a href="https://feixu.site">飞旭</a></li>
+		<li class="layui-nav-item"><a href="https://myustc.feixu.site"">我的科大APP</a></li>
+		<li class="layui-nav-item layui-this"><a href="">大雾实验工具</a></li>
+		<li class="layui-nav-item"><a href="https://wokebox.feixu.site">蜗壳作品集</a></li>
+		<li class="layui-nav-item"><a href="https://course.feixu.site">评课社区镜像站</a></li>
+	</ul>
+    <div class="layui-container" style="max-width: 700px;">
+        <br>
+        <h1><center>大雾实验工具</center></h1>
+        <big><center>绘制图像&计算不确定度&生成计算公式</center></big>
+        <hr>
+
+        <center>
+            链接：<a href="https://jxzy.ustc.edu.cn/" target="_blank">物理实验教学中心</a>&nbsp;&nbsp;<a href="http://pems.ustc.edu.cn/" target="_blank">物理实验预约选课</a>
+        </center>
+        <center><a href="https://www.bilibili.com/video/BV193411G7aP" target="_blank">＞去B站观看宣传片＜</a></center>
+        <hr>
+
+        <center id="urlforpc" style="display: none;">电脑端体验更佳！网址：dawu.feixu.site</center>
+        <center><a href="https://qm.qq.com/cgi-bin/qm/qr?k=am1BQdmIpeI4afX5jzv8kPreSB4cqFYN&jump_from=webapi" target="_blank">加入QQ交流群：658804871</a></center><br>
+        
+        <div class="layui-panel" style="max-width: 500px; margin: auto;">
+            <ul class="layui-menu" id="list">
+                <li class="layui-menu-item-group layui-menu-item-down" style="font-size:15px;">
+                    <div class="layui-menu-body-title">通用<i class="layui-icon layui-icon-up"></i>
+                    </div>
+                    <ul>
+                        <li lay-options="{num:'guide'}" style="font-size:15px;">实验讲义与指导</li>
+                        <li lay-options="{num:'uncertainty'}" style="font-size:15px;">不确定度概观及常用表格</li>
+                        <li lay-options="{num:'exp0a'}" style="font-size:15px;">标准差和不确定度计算</li>
+                        <li lay-options="{num:'exp0b'}" style="font-size:15px;">最小二乘法线性回归</li>
+                    </ul>
+                </li>
+                <li class="layui-menu-item-divider"></li>
+                <li class="layui-menu-item-group layui-menu-item-down" style="font-size:15px;">
+                    <div class="layui-menu-body-title">力热<i class="layui-icon layui-icon-up"></i>
+                    </div>
+                    <ul>
+                        <li class="layui-menu-item-group layui-menu-item-up" style="font-size:15px;">
+                            <div class="layui-menu-body-title">重力加速度的测量<i class="layui-icon layui-icon-down"></i>
+                            </div>
+                            <ul>
+                                <li lay-options="{num:'exp1a'}" style="font-size:15px;">自由落体法测重力加速度</li>
+                                <li lay-options="{num:'exp1b'}" style="font-size:15px;">单摆法测重力加速度</li>
+                            </ul>
+                        </li>
+                        <li class="layui-menu-item-group layui-menu-item-up" style="font-size:15px;">
+                            <div class="layui-menu-body-title">表面张力<i class="layui-icon layui-icon-down"></i>
+                            </div>
+                            <ul>
+                                <li lay-options="{num:'exp2a'}" style="font-size:15px;">测量弹簧劲度系数</li>
+                                <li lay-options="{num:'exp2b'}" style="font-size:15px;">用金属圈测量</li>
+                                <li lay-options="{num:'exp2c'}" style="font-size:15px;">用金属丝测量</li>
+                            </ul>
+                        </li>
+                        <li lay-options="{num:'exp3'}" style="font-size:15px;">落球法测定液体的粘度</li>
+                        <li class="layui-menu-item-group layui-menu-item-up" style="font-size:15px;">
+                            <div class="layui-menu-body-title">质量和密度的测量<i class="layui-icon layui-icon-down"></i>
+                            </div>
+                            <ul>
+                                <li lay-options="{num:'exp4a'}" style="font-size:15px;">测量金属圆柱体的密度</li>
+                                <li lay-options="{num:'exp4b'}" style="font-size:15px;">用转动定律测量物体的质量</li>
+                                <li lay-options="{num:'exp4c'}" style="font-size:15px;">模拟太空失重环境用动力学方法测量物体的质量</li>
+                                <li lay-options="{num:'exp4d'}" style="font-size:15px;">液体法测量物体密度</li>
+                            </ul>
+                        </li>
+                        <li lay-options="{num:'exp5'}" style="font-size:15px;">拉伸法测量钢丝杨氏模量</li>
+                        <li lay-options="{num:'exp6'}" style="font-size:15px;">切变模量</li>
+                        <li lay-options="{num:'exp7'}" style="font-size:15px;">固体比热</li>
+                        <li class="layui-menu-item-group layui-menu-item-up" style="font-size:15px;">
+                            <div class="layui-menu-body-title">匀加速运动与碰撞<i class="layui-icon layui-icon-down"></i>
+                            </div>
+                            <ul>
+                                <li lay-options="{num:'exp8a'}" style="font-size:15px;">匀变速运动中速度与加速度的测量</li>
+                                <li lay-options="{num:'exp8b'}" style="font-size:15px;">研究三种碰撞状态下的守恒定律</li>
+                                <li lay-options="{num:'exp8c'}" style="font-size:15px;">匀加速运动验证牛顿第二定律</li>
+                            </ul>
+                        </li>
+                        <li class="layui-menu-item-group layui-menu-item-up" style="font-size:15px;">
+                            <div class="layui-menu-body-title">声速的测量<i class="layui-icon layui-icon-down"></i>
+                            </div>
+                            <ul>
+                                <li lay-options="{num:'exp9a'}" style="font-size:15px;">共振干涉法（驻波法）测空气中声速</li>
+                                <li lay-options="{num:'exp9b'}" style="font-size:15px;">相位比较法测水中声速</li>
+                                <li lay-options="{num:'exp9c'}" style="font-size:15px;">时差法测有机玻璃棒和黄铜棒中声速</li>
+                            </ul>
+                        </li>
+                        <li lay-options="{num:'exp10'}" style="font-size:15px;">磁力摆</li>
+                    </ul>
+                </li>
+                <li class="layui-menu-item-divider"></li>
+                <li class="layui-menu-item-group layui-menu-item-down" style="font-size:15px;">
+                    <div class="layui-menu-body-title">电磁<i class="layui-icon layui-icon-up"></i>
+                    </div>
+                    <ul>
+                        <li lay-options="{num:'exp11'}" style="font-size:15px;">半导体温度计</li>
+                        <li lay-options="{num:'exp12'}" style="font-size:15px;">示波器的使用</li>
+                        <li class="layui-menu-item-group layui-menu-item-up" style="font-size:15px;">
+                            <div class="layui-menu-body-title">整流滤波电路及应用<i class="layui-icon layui-icon-down"></i>
+                            </div>
+                            <ul>
+                                <li lay-options="{num:'exp13a'}" style="font-size:15px;">信号源频率对滤波效果的影响</li>
+                                <li lay-options="{num:'exp13b'}" style="font-size:15px;">电容大小和纹波系数的关系</li>
+                            </ul>
+                        </li>
+                        <li lay-options="{num:'exp14'}" style="font-size:15px;">直流电源特性</li>
+                        <li class="layui-menu-item-group layui-menu-item-up" style="font-size:15px;">
+                            <div class="layui-menu-body-title">硅光电池特性研究<i class="layui-icon layui-icon-down"></i>
+                            </div>
+                            <ul>
+                                <li lay-options="{num:'exp15a'}" style="font-size:15px;">暗伏安特性测量</li>
+                                <li lay-options="{num:'exp15b'}" style="font-size:15px;">输出特性测量</li>
+                                <li lay-options="{num:'exp15c'}" style="font-size:15px;">开路电压、短路电流与光照特性测量</li>
+                            </ul>
+                        </li>
+                        <li class="layui-menu-item-group layui-menu-item-up" style="font-size:15px;">
+                            <div class="layui-menu-body-title">RGB配色<i class="layui-icon layui-icon-down"></i>
+                            </div>
+                            <ul>
+                                <li lay-options="{num:'exp16a'}" style="font-size:15px;">LED的伏安特性测量</li>
+                                <li lay-options="{num:'exp16b'}" style="font-size:15px;">LED的发光强度特性</li>
+                            </ul>
+                        </li>
+                        <li lay-options="{num:'exp17'}" style="font-size:15px;">数字体温计</li>
+                    </ul>
+                </li>
+                <li class="layui-menu-item-divider"></li>
+                <li class="layui-menu-item-group layui-menu-item-down" style="font-size:15px;">
+                    <div class="layui-menu-body-title">光学<i class="layui-icon layui-icon-up"></i>
+                    </div>
+                    <ul>
+                        <li lay-options="{num:'exp18'}" style="font-size:15px;">分光计的调节与使用</li>
+                        <li class="layui-menu-item-group layui-menu-item-up" style="font-size:15px;">
+                            <div class="layui-menu-body-title">干涉法测微小量<i class="layui-icon layui-icon-down"></i>
+                            </div>
+                            <ul>
+                                <li lay-options="{num:'exp19a'}" style="font-size:15px;">干涉法测微小量（测曲率半径）</li>
+                                <li lay-options="{num:'exp19b'}" style="font-size:15px;">干涉法测微小量（测头发丝直径）</li>
+                            </ul>
+                        </li>
+                        <li lay-options="{num:'exp20'}" style="font-size:15px;">透镜参数测量</li>
+                        <li lay-options="{num:'exp21'}" style="font-size:15px;">显微镜的使用</li>
+                        <li class="layui-menu-item-group layui-menu-item-up" style="font-size:15px;">
+                            <div class="layui-menu-body-title">衍射实验<i class="layui-icon layui-icon-down"></i>
+                            </div>
+                            <ul>
+                                <li lay-options="{num:'exp22a'}" style="font-size:15px;">单缝衍射</li>
+                                <li lay-options="{num:'exp22b'}" style="font-size:15px;">双缝衍射</li>
+                                <li lay-options="{num:'exp22c'}" style="font-size:15px;">测量弹簧参数</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="layui-menu-item-divider"></li>
+                <li class="layui-menu-item-group layui-menu-item-down" style="font-size:15px;">
+                    <div class="layui-menu-body-title">近代<i class="layui-icon layui-icon-up"></i>
+                    </div>
+                    <ul>
+                        <li class="layui-menu-item-group layui-menu-item-up" style="font-size:15px;">
+                            <div class="layui-menu-body-title">光电效应<i class="layui-icon layui-icon-down"></i>
+                            </div>
+                            <ul>
+                                <li lay-options="{num:'exp23a'}" style="font-size:15px;">光电效应测普朗克常量</li>
+                                <li lay-options="{num:'exp23b'}" style="font-size:15px;">验证饱和光电流与光强（光阑孔面积）成正比</li>
+                                <li lay-options="{num:'exp23c'}" style="font-size:15px;">验证饱和光电流与光强（距离的负二次方）成正比</li>
+                                <li lay-options="{num:'exp23d'}" style="font-size:15px;">光电效应测伏安特性曲线</li>
+                            </ul>
+                        </li>
+                        <li class="layui-menu-item-group layui-menu-item-up" style="font-size:15px;">
+                            <div class="layui-menu-body-title">密立根油滴实验<i class="layui-icon layui-icon-down"></i>
+                            </div>
+                            <ul>
+                                <li lay-options="{num:'exp24a'}" style="font-size:15px;">电量与电荷数线性回归分析</li>
+                                <li lay-options="{num:'exp24b'}" style="font-size:15px;">平衡测量法测油滴带电量</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="layui-menu-item-divider"></li>
+                <li class="layui-menu-item-group layui-menu-item-down" style="font-size:15px;">
+                    <div class="layui-menu-body-title">生活<i class="layui-icon layui-icon-up"></i>
+                    </div>
+                    <ul>
+                        <li lay-options="{num:'exp25'}" style="font-size:15px;">生活中的物理实验</li>
+                    </ul>
+                </li>
+                <li class="layui-menu-item-divider"></li>
+                <li lay-options="{num:''}" style="font-size:15px;">更多实验，敬请期待</li>
+            </ul>
+        </div>
+        <br>
+
+        <p  style="max-width: 580px; margin: auto;">注：虽然经过了测试，但错误总是难免的；若您发现了问题，欢迎联系 <a href="mailto:sxl66@outlook.com">sxl66@outlook.com</a></p>
+        <hr>
+        
+		<center><b><a style="line-height: 150%;" href="https://feixu.site" target="_blank">☆ 飞旭 ☆</a></b></center>
+        <center><b>开发团队</b><br>Sun Xulei | brealid | 秦沁 | 张学涵 | bztMinamoto</center>
+		<center><b>友情链接</b>：<a href="https://myustc.feixu.site" target="_blank">我的科大APP</a> | <a href="https://wokebox.feixu.site" target="_blank">蜗壳作品集</a></center>
+
+        <center style="font-size: 12px; line-height: 250%;">
+            <a href="https://beian.miit.gov.cn/" target="_blank" style="color: #939393;">浙ICP备2022018221号-1</a>
+            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33028202000901" target="_blank" style="color: #939393;"><img src="/static/beian.png"/>浙公网安备33028202000901号</a>
+        </center>
+    </div>
+    
+    <canvas></canvas>
+    <script src="/static/canvas-nest.min.js"></script>
+    <script src="/static/layui/layui.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> -->
+    <script>
+        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) document.getElementById("urlforpc").style = "";
+        else document.getElementById("nav").style = "";
+		layui.use('util', function(){
+			var util = layui.util;
+			util.fixbar({
+				css: {right: 20, bottom: 70}
+			});
+		});
+		layui.use('element', function(){
+			var element = layui.element;
+		});
+        layui.use('dropdown', function(){
+            var dropdown = layui.dropdown;
+            dropdown.on('click(list)', function(options){
+                if (options.num == 'guide') window.location.href = "/static/实验讲义与指导.zip";
+                else if (options.num != '') window.location.href = options.num;
+            });
+        });
+    </script>
+</body>
+</html>

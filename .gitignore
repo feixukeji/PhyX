@@ -1,0 +1,5 @@
+__pycache__/
+api/__pycache__/
+module/__pycache__/
+usrdata/*
+其他/

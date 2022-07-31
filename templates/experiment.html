@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="description" content="大雾实验工具：中科大大物实验的好帮手！网页版，免安装，免配置，一键使用！上传数据，自动分析，绘制图像，计算不确定度，生成计算公式……全方位满足你的需求！">
+	<meta name="keywords" content="USTC, 科大, 大雾实验工具, 大物实验工具, 大学物理实验">
+	<title>大雾实验工具-{{name}}</title>
+	<link rel="icon" href="/static/icon.jpg" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> -->
+    <style type="text/css">
+        a:link {color:DodgerBlue;}
+        a:visited {color:DodgerBlue;}
+        a:hover {color:Blue;}
+        a:active {color:Blue;}
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?3cb9091189f56f2a704a01b5a9fbddb8";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+	<ul class="layui-nav layui-nav-child-c" id="nav" style="display: none;">
+		<li class="layui-nav-item"><a href="https://feixu.site">飞旭</a></li>
+		<li class="layui-nav-item"><a href="https://myustc.feixu.site"">我的科大APP</a></li>
+		<li class="layui-nav-item layui-this"><a href="/">大雾实验工具</a></li>
+		<li class="layui-nav-item"><a href="https://wokebox.feixu.site">蜗壳作品集</a></li>
+		<li class="layui-nav-item"><a href="https://course.feixu.site">评课社区镜像站</a></li>
+	</ul>
+    <div class="layui-container" style="max-width: 850px; text-align: center;">
+        <br>
+        <h1>{{name}}</h1>
+        <hr>
+        
+        <a style="font-size: 15px;" class="layui-btn layui-btn-primary layui-border-blue" onclick="guidance()">实验指导</a>
+        <!-- <a style="font-size: 15px;" class="layui-btn layui-btn-primary layui-border-green" onclick="exam()">测试答案</a> -->
+        <a style="font-size: 15px;" class="layui-btn layui-btn-primary layui-border-red" href="/static/experiment/{{num}}/{{name}}（示例数据）.csv">示例数据</a>
+        <br>
+
+        <p style="font-size: 15px; line-height:250%;">上传的 Excel 数据文件格式应与示例数据一致：</p>
+        <img src="/static/experiment/{{num}}/{{name}}（示例数据）.png" style="zoom: 65%;"><br>
+        <p style="font-size: 13px; line-height:250%;">注：示例数据仅表明格式，数据本身不一定正确</p>
+
+        <p id="tip" style="font-size: 15px; line-height:250%;">上传 Excel 文件后即可自动作图并生成文档：</p>
+
+        <div class="layui-upload-drag" id="uploadbtn">
+            <i class="layui-icon">&#xe67c;</i>
+            <p style="font-size: 13px;">点击上传数据文件，或将文件拖拽至此<br>建议上传 csv 文件，大小不得超过 5MB</p>
+        </div>
+        
+        <a style="display: none;" class="layui-btn layui-btn-primary layui-border-green" id="downloadbtn" href="">下载生成的文档</a>
+        <br><br>
+        
+		<center><b><a style="line-height: 150%;" href="https://feixu.site" target="_blank">☆ 飞旭 ☆</a></b></center>
+        <center><b>开发团队</b><br>Sun Xulei | brealid | 秦沁 | 张学涵 | bztMinamoto</center>
+		<center><b>友情链接</b>：<a href="https://myustc.feixu.site" target="_blank">我的科大APP</a> | <a href="https://wokebox.feixu.site" target="_blank">蜗壳作品集</a></center>
+    </div>
+    
+    <canvas></canvas>
+    <script src="/static/canvas-nest.min.js"></script>
+    <script src="/static/layui/layui.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> -->
+    <script>
+        if (!(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))) document.getElementById("nav").style = "";
+		layui.use('util', function(){
+			var util = layui.util;
+			util.fixbar({
+				css: {right: 20, bottom: 70}
+			});
+		});
+		layui.use('element', function(){
+			var element = layui.element;
+		});
+        layui.use('upload', function(){
+            var upload = layui.upload;
+            var loading;
+
+            var uploadInst = upload.render({
+                elem: '#uploadbtn',
+                accept: 'file',
+                size: 5120,
+                url: '{{num}}/handle',
+                before: function(obj){
+                    loading = layer.load();
+                },
+                done: function(res){
+                    layer.close(loading);
+                    if(res.code == 0){
+                        document.getElementById("tip").innerText = "文档生成成功，5分钟后将从服务器上移除："
+                        document.getElementById("uploadbtn").style = "display: none;"
+                        downloadbtn = document.getElementById("downloadbtn")
+                        downloadbtn.href = "/download/{{num}}/" + res.data
+                        downloadbtn.style = "font-size: 15px;"
+                        layer.msg('文档生成成功')
+                    }
+                    else layer.alert(res.data, {title: false, closeBtn: 0})
+                },
+                error: function(){
+                    layer.close(loading);
+                    layer.alert('上传失败', {title: false, closeBtn: 0})
+                }
+            });
+        });
+        function guidance(){
+            if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))
+                if (navigator.userAgent.indexOf("Chrome") == -1)
+                    window.location.href = '/pdf-view?file=/static/experiment/{{num}}/{{name}}（实验指导）.pdf';
+                else
+                    window.location.href = '/static/experiment/{{num}}/{{name}}（实验指导）.pdf';
+            else
+                layer.open({
+                    type: 2,
+                    title: '实验指导',
+                    area: ['80%', '90%'],
+                    maxmin: true,
+                    shadeClose: true,
+                    content: '/pdf-view?file=/static/experiment/{{num}}/{{name}}（实验指导）.pdf'
+                });
+        }
+        function exam(){
+            if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))
+                layer.open({
+                    type: 2,
+                    title: '测试答案（仅供参考）',
+                    area: [document.documentElement.clientWidth+'px', document.documentElement.clientHeight+'px'],
+                    shadeClose: true,
+                    content: '{{num}}/exam'
+                });
+            else
+                layer.open({
+                    type: 2,
+                    title: '测试答案（仅供参考）',
+                    area: ['70%', '80%'],
+                    maxmin: true,
+                    shadeClose: true,
+                    content: '{{num}}/exam'
+                });
+        }
+    </script>
+</body>
+</html>
