@@ -1,5 +1,7 @@
 # 大雾实验工具开发说明
 
+:stuck_out_tongue: **You are welcomed to contribute, as long as you can read Chinese!**
+
 ## 目录结构说明
 
 ```bash
@@ -93,6 +95,50 @@
   - 若某张图片正好在第2页开头，而第1页尾部有很多空白区域，为避免误解，应在第1页的最后一个段落之后注明“【本文档不只有一页，请向下翻阅】”。
   - 插入表格参考 [exp5.py](module/exp5.py)。
 
+## 协作方法
+
+在 Github 上协作非常简单，只需进行以下四个步骤。
+
+### 建立 fork
+
+本页右上角有一个 `Fork` 按钮，点击它会出现如下界面：
+
+![Mew fork](https://s2.loli.net/2022/08/15/5FskUI1WhOql3n8.png)
+
+直接点击 `Create fork` 即可。
+
+### 作出修改
+
+`Create fork` 会在你的账户下创建一个 Repository, 其内容与本处 Repository 的内容一样，但你拥有一切权限。这时，你就可以在你的这个 Repository 里自由地进行修改了。
+
+![Commit changes](https://s2.loli.net/2022/08/15/wKltBaYsIj8ASpW.png)
+
+### 准备 Pull request
+
+当你作完了修改后，便可将这些修改提交予我们，以改进本项目。在你的 Repository 主页按照下面图片操作：
+
+![Open pull request](https://s2.loli.net/2022/08/15/TbqXjed3lOhA4Jv.png)
+
+### 提交 Pull request
+
+在 `Open pull requst` 的表单中，直接将内容提交至我们的 `main` base 即可。填写完表单后点击 `Create pull request`。
+
+![Create pull request](https://s2.loli.net/2022/08/15/4krCp8MSNnehH7T.png)
+
+**至此，你已经成功提交了你的修改。**
+
+随后，在本项目的 `Pull requests` 栏中会出现你的提交，我们会心怀感激地接纳你的修改，或与你进一步讨论。
+
+![Merge pull request](https://s2.loli.net/2022/08/15/s3CrZJvXItwyxgn.png)
+
+> 参考：[Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo), [Pull requests](https://docs.github.com/en/pull-requests)
+
+## To Do
+
+1. 网页端输入和显示。
+2. 手写表格数字识别：把手写的实验数据转换成 Excel（csv）文件。
+3. PDF在线预览（目前在部分手机浏览器上无法预览）。
+
 ## 贡献榜
 
 - 组织策划&前端&前后端衔接程序&公式插入API&数据处理程序示例&开发文档编写&代码审查：孙旭磊
@@ -127,32 +173,3 @@
   |23|光电效应|近代|张学涵|
   |24|密立根油滴|近代|秦沁|
   |25|生活中的物理实验|生活|秦沁|
-
-## 其他说明
-
-- 在 https://git.ustc.edu.cn/ 上进行代码管理
-  - git命令行
-    - 首次使用
-      `git config --global http.sslVerify false`
-      `git config --global user.name "名字"`
-      `git config --global user.email "邮箱@mail.ustc.edu.cn"`（全局配置）
-      `git clone https://git.ustc.edu.cn/sxl/dawu`（在待git文件夹内执行）
-    - pull（每次修改代码前执行，拉取最新代码）
-      `git pull --tags origin master`
-    - push（上传自己的代码）
-      `git add *`（添加修改过的文件至缓存区）
-      `git commit -m "说明"`（将更改添加到git库里）
-      `git push origin master:master`（将本地修改保存到云端）
-  - vscode：左侧有图形化界面的 git 资源管理器
-- 学习参考
-  - Python 3 教程：https://www.runoob.com/python3/python3-tutorial.html
-  - NumPy 教程：https://www.runoob.com/numpy/numpy-tutorial.html
-  - Matplotlib 教程：https://www.runoob.com/matplotlib/matplotlib-tutorial.html
-  - Pandas 教程：https://www.runoob.com/pandas/pandas-tutorial.html
-  - python-docx 参考手册：https://python-docx.readthedocs.io/en/latest/
-
-## ToDo
-
-1. 网页端输入和显示。
-2. 手写表格数字识别：把手写的实验数据转换成 Excel（csv）文件。
-3. PDF在线预览（目前在部分手机浏览器上无法预览）。
