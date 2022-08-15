@@ -2,6 +2,8 @@
 
 :stuck_out_tongue: **You are welcomed to contribute, as long as you can read Chinese!**
 
+## 如果你只是用户，请直接访问[大雾实验工具](https://dawu.feixu.site/)网站
+
 ## 目录结构说明
 
 ```bash
@@ -132,6 +134,15 @@
 ![Merge pull request](https://s2.loli.net/2022/08/15/s3CrZJvXItwyxgn.png)
 
 > 参考：[Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo), [Pull requests](https://docs.github.com/en/pull-requests)
+
+## Miscellaneous
+
+- Open a issue: [Tutorial](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue#creating-an-issue-from-a-repository)
+- Python 3: [Documentation](https://docs.python.org/3/), [Tutorial](https://docs.python.org/3/tutorial/), [教程](https://www.runoob.com/python3/python3-tutorial.html)
+- NumPy: [Documentation](https://numpy.org/doc/), [Learn](https://numpy.org/learn/), [教程](https://www.runoob.com/numpy/numpy-tutorial.html)
+- Matplotlib: [Documentation](https://matplotlib.org/stable/index.html), [Tutorial](https://matplotlib.org/stable/tutorials/index.html), [教程](https://www.runoob.com/matplotlib/matplotlib-tutorial.html)
+- Pandas: [Documentation](https://pandas.pydata.org/docs/), [User Guide](https://pandas.pydata.org/docs/user_guide/index.html), [教程](https://www.runoob.com/pandas/pandas-tutorial.html)
+- python-docx: [Documentation](https://python-docx.readthedocs.io/en/latest/), [Quickstart](https://python-docx.readthedocs.io/en/latest/user/quickstart.html)
 
 ## To Do
 
