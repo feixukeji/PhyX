@@ -186,3 +186,7 @@
   |23|光电效应|近代|张学涵|
   |24|密立根油滴|近代|秦沁|
   |25|生活中的物理实验|生活|秦沁|
+
+## License
+
+PhyX is released under the [AGPL-3.0 license](https://github.com/feixukeji/PhyX/blob/main/LICENSE).
