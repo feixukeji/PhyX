@@ -1,1 +1,2 @@
-static/pdf.js/ linguist-vendored
+static/pdf.js/** linguist-vendored
+api/MML2OMML.XSL -linguist-vendored
