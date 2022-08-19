@@ -133,7 +133,7 @@
 
 ![Merge pull request](https://s2.loli.net/2022/08/15/s3CrZJvXItwyxgn.png)
 
-或者，如果你有好的想法，但自己难以实现，也欢迎[提出issue](https://github.com/feixukeji/PhyX/issues)。
+或者，如果你有好的想法，也欢迎[提出issue](https://github.com/feixukeji/PhyX/issues)。
 
 > 参考：[Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo), [Pull requests](https://docs.github.com/en/pull-requests), [Creating an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue#creating-an-issue-from-a-repository)
 
@@ -189,4 +189,4 @@
 
 ## License
 
-PhyX is released under the [AGPL-3.0 license](https://github.com/feixukeji/PhyX/blob/main/LICENSE).
+PhyX is released under the [AGPL-3.0 license](./LICENSE).
