@@ -55,10 +55,11 @@
                     <div class="layui-menu-body-title">通用<i class="layui-icon layui-icon-up"></i>
                     </div>
                     <ul>
-                        <li lay-options="{num:'guide'}" style="font-size:15px;">实验讲义与指导</li>
+                        <li lay-options="{num:'guide'}" style="font-size:15px;">大学物理·基础实验讲义与指导</li>
                         <li lay-options="{num:'uncertainty'}" style="font-size:15px;">不确定度概观及常用表格</li>
-                        <li lay-options="{num:'exp0a'}" style="font-size:15px;">标准差和不确定度计算</li>
+                        <li lay-options="{num:'exp0a'}" style="font-size:15px;">平均值、标准差、不确定度计算</li>
                         <li lay-options="{num:'exp0b'}" style="font-size:15px;">最小二乘法线性回归</li>
+                        <li lay-options="{num:'exp0c'}" style="font-size:15px;">表达式及合成不确定度计算</li>
                     </ul>
                 </li>
                 <li class="layui-menu-item-divider"></li>
@@ -252,7 +253,7 @@
         layui.use('dropdown', function(){
             var dropdown = layui.dropdown;
             dropdown.on('click(list)', function(options){
-                if (options.num == 'guide') window.location.href = "/static/实验讲义与指导.zip";
+                if (options.num == 'guide') window.location.href = "/static/大学物理·基础实验讲义与指导.zip";
                 else if (options.num != '') window.location.href = options.num;
             });
         });

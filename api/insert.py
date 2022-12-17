@@ -14,32 +14,32 @@ def latex_to_word(latex_code):
 
 
 def insert_data(docu, name, data, option):
-    # 平均值/标准差/不确定度计算公式插入
+    # 平均值、标准差、不确定度计算公式插入
     
     # 参数：
     # docu：文档对象
     # name：该物理量的名称和符号
-    # data：该物理量的相关数据（包含平均值/标准差/不确定度的元组）
+    # data：该物理量的相关数据（包含平均值、标准差、不确定度的元组）
     # option：插入选项，"word"表示插入 Word 公式，"latex"表示插入 Latex 公式
 
     if option == "word":
-        docu.add_paragraph(name + "的平均值：")
+        docu.add_paragraph(name + "的平均值")
         docu.add_paragraph()._element.append(latex_to_word(data.averagex2))
-        docu.add_paragraph(name + "的标准差：")
+        docu.add_paragraph(name + "的标准差")
         docu.add_paragraph()._element.append(latex_to_word(data.sigmax2))
-        docu.add_paragraph(name + "的B类不确定度：")
+        docu.add_paragraph(name + "的B类不确定度")
         docu.add_paragraph()._element.append(latex_to_word(data.delta_bx2))
-        docu.add_paragraph(name + "的展伸不确定度：")
+        docu.add_paragraph(name + "的展伸不确定度")
         docu.add_paragraph()._element.append(latex_to_word(data.uncx2))
         docu.add_paragraph()
     elif option == "latex":
-        docu.add_paragraph(name + "的平均值：")
+        docu.add_paragraph(name + "的平均值")
         docu.add_paragraph(data.averagex)
-        docu.add_paragraph(name + "的标准差：")
+        docu.add_paragraph(name + "的标准差")
         docu.add_paragraph(data.sigmax)
-        docu.add_paragraph(name + "的B类不确定度：")
+        docu.add_paragraph(name + "的B类不确定度")
         docu.add_paragraph(data.delta_bx)
-        docu.add_paragraph(name + "的展伸不确定度：")
+        docu.add_paragraph(name + "的展伸不确定度")
         docu.add_paragraph(data.uncx)
         docu.add_paragraph()
 
@@ -49,7 +49,7 @@ def insert_data_lsm(docu, data, option):
     
     # 参数：
     # docu：文档对象
-    # data：该物理量的相关数据（包含平均值/标准差/不确定度的元组）
+    # data：相关数据（包含斜率、截距、线性拟合的相关系数、斜率标准差、截距标准差的元组）
     # option：插入选项，"word"表示插入 Word 公式，"latex"表示插入 Latex 公式
     
     if option == "word":
@@ -75,4 +75,31 @@ def insert_data_lsm(docu, data, option):
         docu.add_paragraph(data.s_mx)
         docu.add_paragraph("截距标准差")
         docu.add_paragraph(data.s_bx)
+        docu.add_paragraph()
+
+
+def insert_data_com(docu, name, data, option):
+    # 表达式及合成不确定度计算公式插入
+    
+    # 参数：
+    # docu：文档对象
+    # name：该物理量的名称和符号
+    # data：该物理量的相关数据（包含表达式计算、合成不确定度的元组）
+    # option：插入选项，"word"表示插入 Word 公式，"latex"表示插入 Latex 公式
+
+    if option == "word":
+        docu.add_paragraph(name)
+        docu.add_paragraph()._element.append(latex_to_word(data.ansx2))
+        docu.add_paragraph(name + "的延伸不确定度")
+        docu.add_paragraph()._element.append(latex_to_word(data.uncx2))
+        docu.add_paragraph(name + "的最终结果")
+        docu.add_paragraph()._element.append(latex_to_word(data.finalx2))
+        docu.add_paragraph()
+    elif option == "latex":
+        docu.add_paragraph(name)
+        docu.add_paragraph(data.ansx)
+        docu.add_paragraph(name + "的延伸不确定度")
+        docu.add_paragraph(data.uncx)
+        docu.add_paragraph(name + "的最终结果")
+        docu.add_paragraph(data.finalx)
         docu.add_paragraph()

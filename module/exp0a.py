@@ -2,7 +2,7 @@ from head import *  # 导入万能头
 
 
 def name():  # 返回实验名称
-    return "标准差和不确定度计算"
+    return "平均值、标准差、不确定度计算"
 
 
 def handle(workpath, extension):
@@ -13,13 +13,14 @@ def handle(workpath, extension):
         if extension == 'csv':
             with open(excelpath, 'rb') as f:
                 encode = chardet.detect(f.read())["encoding"]  # 判断编码格式
-            data = pd.read_csv(excelpath, header=0, names=["x", "delta_b1", "delta_b2", "confidence_C", "confidence_P"], encoding=encode)  # 读取csv文件
+            data = pd.read_csv(excelpath, header=None, names=["x", "unit", "delta_b1", "delta_b2", "confidence_C", "confidence_P"], encoding=encode)  # 读取csv文件
         else:
-            data = pd.read_excel(excelpath, header=0, names=["x", "delta_b1", "delta_b2", "confidence_C", "confidence_P"])  # 读取xls/xlsx文件
+            data = pd.read_excel(excelpath, header=None, names=["x", "unit", "delta_b1", "delta_b2", "confidence_C", "confidence_P"])  # 读取xls/xlsx文件
 
         os.remove(excelpath)  # 读取Excel数据后删除文件
 
-        res = analyse(data["x"], data["delta_b1"][0], data["delta_b2"][0], confidence_C=data["confidence_C"][0], confidence_P=data["confidence_P"][0])
+        res = analyse(pd.Series([float(x) for x in data["x"][1:]]), float(data["delta_b1"][1]), float(data["delta_b2"][1]), 
+            data["x"][0], data["unit"][1], float(data["confidence_C"][1]), float(data["confidence_P"][1]))
 
         docu = Document()
         docu.styles['Normal'].font.name = '微软雅黑'
@@ -30,10 +31,10 @@ def handle(workpath, extension):
         docu.add_paragraph("【Latex代码在下面，请向下翻阅】")
         docu.add_paragraph()
 
-        insert_data(docu, "x", res, "word")
+        insert_data(docu, data["x"][0], res, "word")
 
         docu.add_paragraph("【Latex代码】")
-        insert_data(docu, "x", res, "latex")
+        insert_data(docu, data["x"][0], res, "latex")
 
         docu.save(workpath+name()+".docx")  # 保存Word文档，注意文件名必须与name()函数返回值一致
 

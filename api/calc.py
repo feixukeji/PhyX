@@ -23,6 +23,7 @@ def adjust_char(latex_code):
     latex_code = latex_code.replace("℃", r"^{\circ}C")
     latex_code = latex_code.replace("°", r"^{\circ}")
     latex_code = latex_code.replace("⋅", r"\cdot ")
+    latex_code = latex_code.replace("・", r"\cdot ")
     latex_code = latex_code.replace("%", r"\% ")
     latex_code = latex_code.replace("δ", r"\delta ")
     latex_code = latex_code.replace("Δ", r"\Delta ")
@@ -49,7 +50,7 @@ def numlatex(num, prec=5):
 
 
 def analyse(data, delta_b1=0, delta_b2=0, symbol='x', unit='', confidence_C=3, confidence_P=0.95):
-    # 平均值/标准差/不确定度计算
+    # 平均值、标准差、不确定度计算
 
     # 参数：
     # data：实验数据（一维数组）
@@ -171,12 +172,6 @@ def analyse_lsm(data_X, data_Y, symbol_X='X', symbol_Y='Y', unit_m='', unit_b=''
     symbol_Y = adjust_char(symbol_Y)
     unit_m = adjust_char(unit_m)
     unit_b = adjust_char(unit_b)
-    
-    n = len(data_X)
-    max_X = data_X.max()
-    min_X = data_X.min()
-    max_Y = data_Y.max()
-    min_Y = data_Y.min()
 
     lsm_res = scipy.stats.linregress(data_X, data_Y)
     # 线性回归并计算统计误差

@@ -100,6 +100,11 @@ def baidu_verify():
     return render_template("baidu_verify_code-Y7syXC9ypc.html")
 
 
+@app.route('/BingSiteAuth.xml', methods=['GET'])
+def bing_verify():
+    return render_template("BingSiteAuth.xml")
+
+
 @app.errorhandler(404)  # 错误页面
 def ERROR_404(e):
     return render_template("404.html")
