@@ -318,7 +318,12 @@ def analyse_com(exp, varr=(), constt=(), unit='', confidence_P=0.95):
     uncx = adjust_char(uncx)
     uncx2 = adjust_char(uncx2)
 
-    if str(unc*1e30)[0] == "1" or str(unc*1e30)[0] == "2": # 判断不确定度的第一个有效数位
+    unc_first_digit = 0
+    for unc_digit in str(unc):
+        if "0" < unc_digit <= "9":
+            unc_first_digit = unc_digit
+            break
+    if unc_first_digit == "1" or unc_first_digit == "2": # 判断不确定度的第一个有效数位
         final = "{:.2uL}".format(ufloat(ans, unc))
     else:
         final = "{:.1uL}".format(ufloat(ans, unc))
