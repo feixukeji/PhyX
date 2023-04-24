@@ -15,15 +15,15 @@ def handle(workpath, extension):
         if extension == 'csv':
             with open(excelpath, 'rb') as f:
                 encode = chardet.detect(f.read())["encoding"]  # 判断编码格式
-            data = pd.read_csv(excelpath, header=None, names=["x", "y", "unit_m", "unit_b"], encoding=encode)  # 读取csv文件
+            data = pd.read_csv(excelpath, header=None, names=["x", "y", "unit_x", "unit_y", "unit_m"], encoding=encode)  # 读取csv文件
         else:
-            data = pd.read_excel(excelpath, header=None, names=["x", "y", "unit_m", "unit_b"])  # 读取xls/xlsx文件
+            data = pd.read_excel(excelpath, header=None, names=["x", "y", "unit_x", "unit_y", "unit_m"])  # 读取xls/xlsx文件
 
         os.remove(excelpath)  # 读取Excel数据后删除文件
 
         x = pd.Series([float(x) for x in data["x"][1:]])
         y = pd.Series([float(y) for y in data["y"][1:]])
-        res = analyse_lsm(x, y, data["x"][0], data["y"][0], data["unit_m"][1], data["unit_b"][1])  # 最小二乘多项式拟合之线性回归
+        res = analyse_lsm(x, y, data["x"][0], data["y"][0], data["unit_m"][1], data["unit_y"][1])  # 最小二乘多项式拟合之线性回归
 
         fig, ax = plt.subplots()  # 新建绘图对象
 
@@ -34,8 +34,8 @@ def handle(workpath, extension):
         ax.plot(x, y, "o", color='r', markersize=3)  # 绘制数据点
         ax.plot(x, res.b + res.m * x, color='b', linewidth=1.5)  # 拟合直线
         # 作图，详见 https://www.runoob.com/matplotlib/matplotlib-marker.html 和 https://www.runoob.com/matplotlib/matplotlib-line.html
-        ax.set_xlabel(data["x"][0], fontproperties=zhfont)
-        ax.set_ylabel(data["y"][0], fontproperties=zhfont)
+        ax.set_xlabel(data["x"][0] + "/" + data["unit_x"][1], fontproperties=zhfont)
+        ax.set_ylabel(data["y"][0] + "/" + data["unit_y"][1], fontproperties=zhfont)
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
 
         imgpath = workpath + "img.jpg"

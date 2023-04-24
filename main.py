@@ -85,7 +85,7 @@ def handle(num):
         return "Not Found"
 
 
-@app.route('/download/<string:num>/<string:fileid>', methods=['GET'])  # Word文档下载
+@app.route('/download/<string:num>/<string:fileid>.docx', methods=['GET'])  # Word文档下载
 def download_docx(num, fileid):
     if num in numlist:
         directory = basepath + '/usrdata/' + num + "/" + fileid + '/'

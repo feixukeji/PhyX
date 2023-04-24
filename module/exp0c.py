@@ -19,6 +19,7 @@ def handle(workpath, extension):
 
         os.remove(excelpath)  # 读取Excel数据后删除文件
 
+        data["exp"][0] = data["exp"][0].replace("^", "**")
         symbol = data["exp"][0][:data["exp"][0].find('=')]
         varr = tuple((data["varr"][i], float(data["varr_val"][i]), float(data["varr_unc"][i])) for i in range(len(data["varr"].dropna())))
         constt = tuple((data["constt"][i], float(data["constt_val"][i])) for i in range(len(data["constt"].dropna())))

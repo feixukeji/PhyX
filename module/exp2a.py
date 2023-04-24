@@ -23,7 +23,7 @@ def handle(workpath,extension):
         data["砝码重量G/N"]=[n/1000*g for n in data["砝码总质量m/g"]]
         data["弹簧长度l/m"]=[m/100 for m in data["弹簧长度l/cm"]]
 
-        res_lsm=analyse_lsm(data["砝码重量G/N"], data["弹簧长度l/m"], "F", "l", "N/m", "N") # 线性回归
+        res_lsm=analyse_lsm(data["弹簧长度l/m"], data["砝码重量G/N"], "F", "l", "N/m", "N") # 线性回归
 
         fig, ax=plt.subplots() # 新建绘图对象
 
@@ -31,12 +31,12 @@ def handle(workpath,extension):
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         # 设置副刻度为主刻度的一半
 
-        ax.plot(data["砝码重量G/N"], data["弹簧长度l/m"], "o", color='r', markersize=3) # 绘制数据点
-        ax.plot(data["砝码重量G/N"], res_lsm.b + res_lsm.m*data["砝码重量G/N"], color='b', linewidth=1.5) # 拟合直线
+        ax.plot(data["弹簧长度l/m"], data["砝码重量G/N"], "o", color='r', markersize=3) # 绘制数据点
+        ax.plot(data["弹簧长度l/m"], res_lsm.b + res_lsm.m*data["弹簧长度l/m"], color='b', linewidth=1.5) # 拟合直线
         # 作图，详见 https://www.runoob.com/matplotlib/matplotlib-marker.html 和 https://www.runoob.com/matplotlib/matplotlib-line.html
-        ax.set_title("弹簧长度和砝码重量 l-G 关系曲线", fontproperties=zhfont) # 若有中文，需加fontproperties=zhfont
-        ax.set_xlabel("砝码重量 G/N", fontproperties=zhfont)
-        ax.set_ylabel("弹簧长度 l/m", fontproperties=zhfont)
+        ax.set_title("砝码重量和弹簧长度 G-l 关系曲线", fontproperties=zhfont) # 若有中文，需加fontproperties=zhfont
+        ax.set_xlabel("弹簧长度 l/m", fontproperties=zhfont)
+        ax.set_ylabel("砝码重量 G/N", fontproperties=zhfont)
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
         
         imgpath=workpath+"img.jpg"
@@ -51,13 +51,15 @@ def handle(workpath,extension):
         docu.add_paragraph("【Latex代码在下面，请向下翻阅】")
         docu.add_paragraph()
 
-        docu.add_paragraph("弹簧长度 l 和砝码总质量 m 的关系：")
-        table = docu.add_table(rows=len(data["砝码总质量m/g"])+1, cols=2, style="Table Grid") # 在Word文档中插入表格
-        table.cell(0,0).text = '砝码总质量m/g'
-        table.cell(0,1).text = '弹簧长度l/cm'
+        docu.add_paragraph("砝码总质量 m 和弹簧长度 l 的关系：")
+        table = docu.add_table(rows=len(data["砝码总质量m/g"])+1, cols=3, style="Table Grid") # 在Word文档中插入表格
+        table.cell(0,0).text = '弹簧长度l/cm'
+        table.cell(0,1).text = '砝码总质量m/g'
+        table.cell(0,2).text = '砝码重量G/N'
         for i in range(len(data["砝码总质量m/g"])):
-            table.cell(i+1,0).text = ('%.5g' % data["砝码总质量m/g"][i])
-            table.cell(i+1,1).text = ('%.5g' % data["弹簧长度l/cm"][i])
+            table.cell(i+1,0).text = ('%.5g' % data["弹簧长度l/cm"][i])
+            table.cell(i+1,1).text = ('%.5g' % data["砝码总质量m/g"][i])
+            table.cell(i+1,2).text = ('%.5g' % data["砝码重量G/N"][i])
         docu.add_paragraph()
 
         docu.add_paragraph("最小二乘法拟合：")
