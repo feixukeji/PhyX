@@ -52,15 +52,19 @@
 - sympy
 - uncertainties
 
-通过 `conda`，你可以用如下指令快速配置环境：
+可以通过`pip`批量安装：
+
+```bash
+pip install -r requirements.txt
+```
+
+或者通过`conda`配置环境：
 
 ```bash
 conda create -n phyx -c conda-forge python pip chardet flask lxml matplotlib numpy openpyxl pandas python-docx scipy sympy uncertainties
 conda activate phyx
 pip install latex2mathml
 ```
-
-你也可以通过 `pip` 逐一安装以上的包。
 
 ## 每个数据处理程序的开发流程
 
