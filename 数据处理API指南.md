@@ -44,7 +44,9 @@
 
 ## 最小二乘法线性回归
 
-- 由于最小二乘法的B类不确定度计算较复杂，且大物实验并无要求，故不提供该功能，而直接将斜率标准差视为对应物理量的延伸不确定度。
+> 注：由于最小二乘法的 B 类不确定度计算复杂，且大物教学中心不要求分析线性拟合的不确定度，故不提供该功能，而直接将斜率标准差视为对应物理量的延伸不确定度。
+>
+> 如果你有意改进，一份参考资料是 [GUM 标准](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf)（[ISO 标准](https://www.iso.org/standard/50461.html)与中国[国标](https://std.samr.gov.cn/gb/search/gbDetailed?id=71F772D8230BD3A7E05397BE0A0AB82A)中不确定度的评定和表示都是基于这份标准），请按照此标准实现。
 
 - 调用方法：
   `analyse_lsm(data_X, data_Y, symbol_X, symbol_Y, unit_m, unit_b)`
@@ -107,3 +109,4 @@
   finalx2：最终结果的面向MathML的Latex代码
 - 调用示例：
   `g_com = analyse_com("g=4*pi**2*l/T**2", (("l",0.6976,0.0021), ("T",1.677,0.0064)), (("pi",3.1415926),), "m/s^2")`
+  
