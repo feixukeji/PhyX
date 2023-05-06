@@ -25,7 +25,7 @@ def handle(workpath,extension):
         res_d=analyse(data["d"], 0.004, 0.005, "d", "mm")
 
         data["砝码总质量m/g"]=[n*500 for n in data["n"]]
-        data["金属丝受拉力F/N"]=[m/100 for m in data["砝码总质量m/g"]]
+        data["金属丝受拉力F/N"]=[m/1000*9.8 for m in data["砝码总质量m/g"]]
         data["标尺读数平均值b/cm"]=[(data["b1"][i]+data["b2"][i])/2 for i in range(len(data["b1"]))]
 
         res_lsm=analyse_lsm(data["金属丝受拉力F/N"], data["标尺读数平均值b/cm"], "F", "b", "cm/N", "cm") # 线性回归
