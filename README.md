@@ -23,15 +23,15 @@
 │
 ├─static
 │ ├─experiment（存放各实验的静态文件）
-│ ├─layui（网页框架）
+│ ├─layui（前端框架）
 │ ├─pdf.js（来自Mozilla，用于PDF文件在线预览）
-│ └─uncertainty（不确定度概观及常用表格页面资源）
+│ └─uncertainty（不确定度相关表格）
 │
 ├─templates（前端代码）
 │      404.html（错误页面）
 │      experiment.html（具体实验处理页面）
 │      index.html（网站首页）
-│      uncertainty.html（不确定度概观及常用表格页面）
+│      uncertainty.html（不确定度相关表格页面）
 │      viewer.html（PDF文件在线预览页面）
 │
 └─usrdata（存放程序运行时产生的文件）
