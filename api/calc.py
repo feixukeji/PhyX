@@ -187,11 +187,11 @@ def analyse_lsm(data_X, data_Y, symbol_X='X', symbol_Y='Y', unit_m='', unit_b=''
     u_m = t_P[confidence_P][n-1] * lsm_res.stderr
     u_mx = "$$\n"+r"u_m=t_P\cdot\lvert m\rvert\cdot\sqrt{\left(\frac{1}{r^2}-1\right)/(n-2)}="+('%.5g' % u_m)+r"\,\mathrm{"+unit_m+"},P="+str(confidence_P)+"\n$$"
     u_mx2 = r"u_m=t_P\cdot\lvert m\rvert\cdot\sqrt{\left(\frac{1}{r^2}-1\right)/(n-2)}="+('%.5g' % u_m)+r"\ \mathrm{"+unit_m+r" },\ P="+str(confidence_P)
-    # u_m：斜率的（A类）延伸不确定度 u_m
+    # u_m：斜率的延伸不确定度 u_m
     u_b = t_P[confidence_P][n-1] * lsm_res.intercept_stderr
     u_bx = "$$\n"+r"u_b=u_m\cdot\sqrt{\overline{"+symbol_X+r"^2}}="+('%.5g' % u_b)+r"\,\mathrm{"+unit_b+"},P="+str(confidence_P)+"\n$$"
     u_bx2 = r"u_b=u_m\cdot\sqrt{\bar{"+symbol_X+r"^2}}="+('%.5g' % u_b)+r"\ \mathrm{"+unit_b+" },\ P="+str(confidence_P)
-    # u_b：截距的（A类）延伸不确定度 u_b
+    # u_b：截距的延伸不确定度 u_b
 
     AnalyseLsmData = namedtuple('AnalyseLsmData', ['m', 'mx', 'mx2', 'b', 'bx', 'bx2', 'r', 'rx', 'rx2', 'u_m', 'u_mx', 'u_mx2', 'u_b', 'u_bx', 'u_bx2'])
 

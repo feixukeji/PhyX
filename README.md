@@ -1,12 +1,12 @@
-# 大雾实验工具开发说明
+# 蜗壳大雾实验工具开发说明
 
 :stuck_out_tongue: You are welcomed to contribute, as long as you can read Chinese!
 
-如果你只是用户，请直接访问[大雾实验工具](https://dawu.feixu.site/)网站。
+如果你只是用户，请直接访问[蜗壳大雾实验工具](https://dawu.feixu.site/)网站。
 
 ## 目录结构说明
 
-```bash
+```
 │ head.py（实验数据处理程序万能头）
 │ main.py（主程序）
 │ modulelist.py（模块清单）
@@ -52,13 +52,13 @@
 - sympy
 - uncertainties
 
-可以通过`pip`批量安装：
+可以通过 `pip` 批量安装：
 
 ```bash
 pip install -r requirements.txt
 ```
 
-或者通过`conda`配置环境：
+或者通过 `conda` 配置环境：
 
 ```bash
 conda create -n phyx -c conda-forge python pip chardet flask lxml matplotlib numpy openpyxl pandas python-docx scipy sympy uncertainties
@@ -156,7 +156,7 @@ pip install latex2mathml
 - NumPy: [Documentation](https://numpy.org/doc/), [Learn](https://numpy.org/learn/), [教程](https://www.runoob.com/numpy/numpy-tutorial.html)
 - Matplotlib: [Documentation](https://matplotlib.org/stable/index.html), [Tutorial](https://matplotlib.org/stable/tutorials/index.html), [教程](https://www.runoob.com/matplotlib/matplotlib-tutorial.html)
 - Pandas: [Documentation](https://pandas.pydata.org/docs/), [User Guide](https://pandas.pydata.org/docs/user_guide/index.html), [教程](https://www.runoob.com/pandas/pandas-tutorial.html)
-- python-docx: [Documentation](https://python-docx.readthedocs.io/en/latest/), [Quickstart](https://python-docx.readthedocs.io/en/latest/user/quickstart.html)
+- Python-docx: [Documentation](https://python-docx.readthedocs.io/en/latest/), [Quickstart](https://python-docx.readthedocs.io/en/latest/user/quickstart.html)
 
 ## To Do
 
@@ -183,7 +183,7 @@ pip install latex2mathml
   |7|固体比热|力热|张学涵|
   |8|匀加速运动|力热|孙旭磊|
   |9|声速测量|力热|张学涵|
-  |10|磁力摆|力热|…|
+  |10|磁力摆|力热|（待开发）|
   |11|半导体温度计|电磁|张学涵|
   |12|示波器的使用|电磁|鲍政廷|
   |13|整流滤波|电磁|赵奕|

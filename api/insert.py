@@ -31,7 +31,6 @@ def insert_data(docu, name, data, option):
         docu.add_paragraph()._element.append(latex_to_word(data.delta_bx2))
         docu.add_paragraph(name + "的展伸不确定度")
         docu.add_paragraph()._element.append(latex_to_word(data.uncx2))
-        docu.add_paragraph()
     elif option == "latex":
         docu.add_paragraph(name + "的平均值")
         docu.add_paragraph(data.averagex)
@@ -41,7 +40,7 @@ def insert_data(docu, name, data, option):
         docu.add_paragraph(data.delta_bx)
         docu.add_paragraph(name + "的展伸不确定度")
         docu.add_paragraph(data.uncx)
-        docu.add_paragraph()
+    docu.add_paragraph()
 
 
 def insert_data_lsm(docu, data, option):
@@ -63,10 +62,6 @@ def insert_data_lsm(docu, data, option):
         docu.add_paragraph()._element.append(latex_to_word(data.u_mx2))
         docu.add_paragraph("截距的延伸不确定度")
         docu.add_paragraph()._element.append(latex_to_word(data.u_bx2))
-        font = docu.add_paragraph().add_run("这里只考虑斜率和截距的 A 类不确定度。由 x 物理量和 y 物理量的 B 类不确定度如何推出斜率的 B 类不确定度，这个问题大物教学中心并未回复。").font
-        font.italic = True
-        font.size = Pt(6.5)
-        docu.add_paragraph()
     elif option == "latex":
         docu.add_paragraph("斜率")
         docu.add_paragraph(data.mx)
@@ -78,7 +73,10 @@ def insert_data_lsm(docu, data, option):
         docu.add_paragraph(data.u_mx)
         docu.add_paragraph("截距的延伸不确定度")
         docu.add_paragraph(data.u_bx)
-        docu.add_paragraph()
+    font = docu.add_paragraph().add_run("这里我们只考虑了 A 类不确定度；至于由 x 物理量和 y 物理量的 B 类不确定度如何推出斜率的 B 类不确定度，这个问题非常复杂，且物理实验教学中心并未对其作出解释。").font
+    font.italic = True
+    font.size = Pt(9)
+    docu.add_paragraph()
 
 
 def insert_data_com(docu, name, data, option):
@@ -97,7 +95,6 @@ def insert_data_com(docu, name, data, option):
         docu.add_paragraph()._element.append(latex_to_word(data.uncx2))
         docu.add_paragraph(name + "的最终结果")
         docu.add_paragraph()._element.append(latex_to_word(data.finalx2))
-        docu.add_paragraph()
     elif option == "latex":
         docu.add_paragraph(name)
         docu.add_paragraph(data.ansx)
@@ -105,4 +102,4 @@ def insert_data_com(docu, name, data, option):
         docu.add_paragraph(data.uncx)
         docu.add_paragraph(name + "的最终结果")
         docu.add_paragraph(data.finalx)
-        docu.add_paragraph()
+    docu.add_paragraph()
