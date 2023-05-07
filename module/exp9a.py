@@ -52,7 +52,7 @@ def handle(workpath,extension):
         docu.add_picture(imgpath) # 在Word文档中添加图片
 
         insert_data_lsm(docu, res_lsm, option="word")
-        lamda=analyse_com("λ=2*m", (("m", abs(res_lsm.m), res_lsm.s_m),), (), "cm")
+        lamda=analyse_com("λ=2*m", (("m", abs(res_lsm.m), res_lsm.u_m),), (), "cm")
         docu.add_paragraph("波长λ")
         docu.add_paragraph()._element.append(latex_to_word(lamda.ansx2))
         docu.add_paragraph("波长λ的延伸不确定度")

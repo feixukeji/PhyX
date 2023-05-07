@@ -23,7 +23,7 @@ def handle(workpath,extension):
 
         res=analyse_lsm(data["n"], data["q"],'n','q','E-19 C','E-19 C') # 最小二乘多项式拟合之线性回归
 
-        res_e=analyse_com("q=m",(("m",abs(res.m),res.s_m),),(),"E-19 C")
+        res_e=analyse_com("q=m",(("m",abs(res.m),res.u_m),),(),"E-19 C")
 
         fig, ax=plt.subplots() # 新建绘图对象
 

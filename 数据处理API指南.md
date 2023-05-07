@@ -44,7 +44,7 @@
 
 ## 最小二乘法线性回归
 
-> 注：由于最小二乘法的 B 类不确定度计算复杂，且大物教学中心不要求分析线性拟合的不确定度，故不提供该功能，而直接将斜率标准差视为对应物理量的延伸不确定度。
+> 线性拟合中，我们只考虑斜率和截距的 A 类不确定度。由 x 物理量和 y 物理量的 B 类不确定度如何推出斜率的 B 类不确定度，这个问题大物教学中心并未回复。事实上，最小二乘法的 B 类不确定度计算非常复杂。
 >
 > 如果你有意改进，一份参考资料是 [GUM 标准](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf)（[ISO 标准](https://www.iso.org/standard/50461.html)与中国[国标](https://std.samr.gov.cn/gb/search/gbDetailed?id=71F772D8230BD3A7E05397BE0A0AB82A)中不确定度的评定和表示都是基于这份标准），请按照此标准实现。
 
@@ -65,22 +65,20 @@
   m：斜率 $m$
   b：截距 $b$
   r：线性拟合的相关系数 $r$
-  s_m：斜率的标准差 $s_m$
-  s_b：截距的标准差 $s_b$
+  u_m：斜率的延伸不确定度 $u_m$
+  u_b：截距的延伸不确定度 $u_b$
 
   mx：斜率 $m$ 的 Latex 代码
   bx：截距 $b$ 的 Latex 代码
   rx：线性拟合的相关系数 $r$ 的 Latex 代码
-  s_mx：斜率的标准差 $s_m$ 的 Latex 代码
-  s_bx：截距的标准差 $s_b$ 的 Latex 代码
+  u_mx：斜率的延伸不确定度 $u_m$ 的 Latex 代码
+  u_bx：截距的延伸不确定度 $u_b$ 的 Latex 代码
 
   mx2：斜率 $m$ 的面向 MathML 的 Latex 代码
   bx2：截距 $b$ 的面向 MathML 的 Latex 代码
   rx2：线性拟合的相关系数 $r$ 的面向 MathML 的 Latex 代码
-  s_mx2：斜率的标准差 $s_m$ 的面向 MathML 的 Latex 代码
-  s_bx2：截距的标准差 $s_b$ 的面向 MathML 的 Latex 代码
-  
-  注：严格来讲标准差并非不确定度，但在大物实验中将其视为不确定度已经足够。
+  u_mx2：斜率的延伸不确定度 $u_m$ 的面向 MathML 的 Latex 代码
+  u_bx2：截距的延伸不确定度 $u_b$ 的面向 MathML 的 Latex 代码
   
 - 调用示例：
   `res_lsm = analyse_lsm(data["F"], data["b"], "F", "b", "cm/N", "cm")`
@@ -109,4 +107,3 @@
   finalx2：最终结果的面向MathML的Latex代码
 - 调用示例：
   `g_com = analyse_com("g=4*pi**2*l/T**2", (("l",0.6976,0.0021), ("T",1.677,0.0064)), (("pi",3.1415926),), "m/s^2")`
-  

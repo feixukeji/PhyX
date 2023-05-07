@@ -30,7 +30,7 @@ def handle(workpath,extension):
 
         res_lsm=analyse_lsm(data["金属丝受拉力F/N"], data["标尺读数平均值b/cm"], "F", "b", "cm/N", "cm") # 线性回归
 
-        res_E=analyse_com("E=(8*D*L)/(pi*d**2*l*m)",(("D",res_D.average,res_D.unc),("L",res_L.average,res_L.unc),("d",res_d.average/10,res_d.unc/10),("l",res_l.average,res_l.unc),("m",abs(res_lsm.m),res_lsm.s_m)),(),"N/cm^2")
+        res_E=analyse_com("E=(8*D*L)/(pi*d**2*l*m)",(("D",res_D.average,res_D.unc),("L",res_L.average,res_L.unc),("d",res_d.average/10,res_d.unc/10),("l",res_l.average,res_l.unc),("m",abs(res_lsm.m),res_lsm.u_m)),(),"N/cm^2")
 
         fig, ax=plt.subplots() # 新建绘图对象
 

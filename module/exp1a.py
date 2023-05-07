@@ -23,7 +23,7 @@ def handle(workpath,extension):
         data["t"]/=1000 # (s)
         data["v"]=data["h"] / data["t"] # Pandas Series支持整体运算，相当于数组中的每个元素都做同样的操作
         res=analyse_lsm(data["t"], data["v"], 't', 'v', 'm/s^2', 'm/s') # 最小二乘多项式拟合之线性回归
-        res_g=analyse_com("g=2*m",(),(("m",res.m,res.s_m),),"m/s^2")
+        res_g=analyse_com("g=2*m",(),(("m",res.m,res.u_m),),"m/s^2")
 
         fig, ax=plt.subplots() # 新建绘图对象
 

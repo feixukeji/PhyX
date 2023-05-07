@@ -113,7 +113,7 @@ def analyse(data, delta_b1=0, delta_b2=0, symbol='x', unit='', confidence_C=3, c
     if n == 1:
         unc = unc_b
         uncx = "$$\nU_{"+symbol+r"}="+r"k_P\frac{\Delta_{B,"+symbol+r"}}{C}="+str(k_P[confidence_P])+r"\times\frac{"+('%.5g' % delta_b)+"}{"+str_confidence_C+r"}\,\mathrm{"+unit+"}="+numlatex(unc)+r"\,\mathrm{"+unit+r"},P="+str(confidence_P)+"\n$$"
-        uncx2 = "U_{"+symbol+r"}="+r"k_P\frac{\Delta_{B,"+symbol+r"}}{C}="+str(k_P[confidence_P])+r"\times\frac{"+('%.5g' % delta_b)+"}{"+str_confidence_C+r"}\ \mathrm{"+unit+" }="+numlatex(unc)+r"\ \mathrm{"+unit+r" }\ ,\ P="+str(confidence_P)
+        uncx2 = "U_{"+symbol+r"}="+r"k_P\frac{\Delta_{B,"+symbol+r"}}{C}="+str(k_P[confidence_P])+r"\times\frac{"+('%.5g' % delta_b)+"}{"+str_confidence_C+r"}\ \mathrm{"+unit+" }="+numlatex(unc)+r"\ \mathrm{"+unit+r" },\ P="+str(confidence_P)
         # unc：延伸不确定度U
         return AnalyseData(average, averagex, averagex2, 0, "NULL", r"\text{NULL}", delta_b, delta_bx, delta_bx2, unc, uncx, uncx2)
 
@@ -129,13 +129,13 @@ def analyse(data, delta_b1=0, delta_b2=0, symbol='x', unit='', confidence_C=3, c
 
     unc = math.sqrt(unc_a ** 2 + unc_b ** 2)
     uncx = "$$\n"+r"\begin{aligned}"+"\n"+r"U_{"+symbol+r",P}&=\sqrt{\left(t_P\frac{\sigma_{"+symbol+r"}}{\sqrt{n}}\right)^2+\left(k_P\frac{\Delta_{B,"+symbol+r"}}{C}\right)^2}\\"+"\n"+r"&=\sqrt{\left("+str(t_P[confidence_P][n])+r"\times\frac{"+('%.5g' % sigma)+r"}{\sqrt{"+str(n)+r"}}\right)^2+\left("+str(k_P[confidence_P])+r"\times\frac{"+('%.5g' % delta_b)+"}{"+str_confidence_C+r"}\right)^2}\,\mathrm{"+unit+r"}\\"+"\n&="+numlatex(unc)+r"\,\mathrm{"+unit+r"},P="+str(confidence_P)+"\n"+r"\end{aligned}"+"\n$$"
-    uncx2 = "U_{"+symbol+r",P}=\sqrt{\left(t_P\frac{\sigma_{"+symbol+r"}}{\sqrt{n}}\right)^2+\left(k_P\frac{\Delta_{B,"+symbol+r"}}{C}\right)^2}"+r"=\sqrt{\left("+str(t_P[confidence_P][n])+r"\times\frac{"+('%.5g' % sigma)+r"}{\sqrt{"+str(n)+r"}}\right)^2+\left("+str(k_P[confidence_P])+r"\times\frac{"+('%.5g' % delta_b)+"}{"+str_confidence_C+r"}\right)^2}\ \mathrm{"+unit+" }="+numlatex(unc)+r"\ \mathrm{"+unit+r" }\ ,\ P="+str(confidence_P)
+    uncx2 = "U_{"+symbol+r",P}=\sqrt{\left(t_P\frac{\sigma_{"+symbol+r"}}{\sqrt{n}}\right)^2+\left(k_P\frac{\Delta_{B,"+symbol+r"}}{C}\right)^2}"+r"=\sqrt{\left("+str(t_P[confidence_P][n])+r"\times\frac{"+('%.5g' % sigma)+r"}{\sqrt{"+str(n)+r"}}\right)^2+\left("+str(k_P[confidence_P])+r"\times\frac{"+('%.5g' % delta_b)+"}{"+str_confidence_C+r"}\right)^2}\ \mathrm{"+unit+" }="+numlatex(unc)+r"\ \mathrm{"+unit+r" },\ P="+str(confidence_P)
     # unc：延伸不确定度U
 
     return AnalyseData(average, averagex, averagex2, sigma, sigmax, sigmax2, delta_b, delta_bx, delta_bx2, unc, uncx, uncx2)
 
 
-def analyse_lsm(data_X, data_Y, symbol_X='X', symbol_Y='Y', unit_m='', unit_b=''):
+def analyse_lsm(data_X, data_Y, symbol_X='X', symbol_Y='Y', unit_m='', unit_b='', confidence_P=0.95):
     # 最小二乘法线性回归
 
     # 参数：
@@ -151,23 +151,22 @@ def analyse_lsm(data_X, data_Y, symbol_X='X', symbol_Y='Y', unit_m='', unit_b=''
     # m：斜率m
     # b：截距b
     # r：线性拟合的相关系数r
-    # s_m：斜率的标准差s_m
-    # s_b：截距的标准差s_b
+    # u_m：斜率的延伸不确定度u_m
+    # u_b：截距的延伸不确定度u_b
 
     # mx：斜率m的Latex代码
     # bx：截距b的Latex代码
     # rx：线性拟合的相关系数r的Latex代码
-    # s_mx：斜率的标准差s_m的Latex代码
-    # s_bx：截距的标准差s_b的Latex代码
+    # u_mx：斜率的延伸不确定度u_m的Latex代码
+    # u_bx：截距的延伸不确定度u_b的Latex代码
 
     # mx2：斜率m的面向MathML的Latex代码
     # bx2：截距b的面向MathML的Latex代码
     # rx2：线性拟合的相关系数r的面向MathML的Latex代码
-    # s_mx2：斜率的标准差s_m的面向MathML的Latex代码
-    # s_bx2：截距的标准差s_b的面向MathML的Latex代码
+    # u_mx2：斜率的延伸不确定度u_m的面向MathML的Latex代码
+    # u_bx2：截距的延伸不确定度u_b的面向MathML的Latex代码
 
-    # 注：严格来讲标准差并非不确定度，但在大物实验中将其视为不确定度已经足够
-
+    n = len(data_X)
     symbol_X = adjust_char(symbol_X)
     symbol_Y = adjust_char(symbol_Y)
     unit_m = adjust_char(unit_m)
@@ -185,16 +184,18 @@ def analyse_lsm(data_X, data_Y, symbol_X='X', symbol_Y='Y', unit_m='', unit_b=''
     rx = "$$\n"+r"r=\frac{\overline{"+symbol_X+symbol_Y+r"}-\overline{"+symbol_X+r"}\cdot\overline{"+symbol_Y+r"}}{\sqrt{\left(\overline{"+symbol_X+r"^2}-\overline{"+symbol_X+r"}^2\right)\left(\overline{"+symbol_Y+r"^2}-\overline{"+symbol_Y+r"}^2\right)}}="+('%.8g' % lsm_res.rvalue)+"\n$$"
     rx2 = r"r=\frac{\bar{"+symbol_X+symbol_Y+r"}-\bar{"+symbol_X+r"}\cdot\bar{"+symbol_Y+r"}}{\sqrt{\left(\bar{"+symbol_X+r"^2}-\bar{"+symbol_X+r"}^2\right)\left(\bar{"+symbol_Y+r"^2}-\bar{"+symbol_Y+r"}^2\right)}}="+('%.8g' % lsm_res.rvalue)
     # r：线性拟合的相关系数r
-    s_mx = "$$\n"+r"s_m=\lvert m\rvert\cdot\sqrt{\left(\frac{1}{r^2}-1\right)/(n-2)}="+('%.5g' % lsm_res.stderr)+r"\,\mathrm{"+unit_m+"}\n$$"
-    s_mx2 = r"s_m=\lvert m\rvert\cdot\sqrt{\left(\frac{1}{r^2}-1\right)/(n-2)}="+('%.5g' % lsm_res.stderr)+r"\ \mathrm{"+unit_m+" }"
-    # s_m：斜率的标准差s_m
-    s_bx = "$$\n"+r"s_b=s_m\cdot\sqrt{\overline{"+symbol_X+r"^2}}="+('%.5g' % lsm_res.intercept_stderr)+r"\,\mathrm{"+unit_b+"}\n$$"
-    s_bx2 = r"s_b=s_m\cdot\sqrt{\bar{"+symbol_X+r"^2}}="+('%.5g' % lsm_res.intercept_stderr)+r"\ \mathrm{"+unit_b+" }"
-    # s_b：截距的标准差s_b
+    u_m = t_P[confidence_P][n-1] * lsm_res.stderr
+    u_mx = "$$\n"+r"u_m=t_P\cdot\lvert m\rvert\cdot\sqrt{\left(\frac{1}{r^2}-1\right)/(n-2)}="+('%.5g' % u_m)+r"\,\mathrm{"+unit_m+"},P="+str(confidence_P)+"\n$$"
+    u_mx2 = r"u_m=t_P\cdot\lvert m\rvert\cdot\sqrt{\left(\frac{1}{r^2}-1\right)/(n-2)}="+('%.5g' % u_m)+r"\ \mathrm{"+unit_m+r" },\ P="+str(confidence_P)
+    # u_m：斜率的（A类）延伸不确定度 u_m
+    u_b = t_P[confidence_P][n-1] * lsm_res.intercept_stderr
+    u_bx = "$$\n"+r"u_b=u_m\cdot\sqrt{\overline{"+symbol_X+r"^2}}="+('%.5g' % u_b)+r"\,\mathrm{"+unit_b+"},P="+str(confidence_P)+"\n$$"
+    u_bx2 = r"u_b=u_m\cdot\sqrt{\bar{"+symbol_X+r"^2}}="+('%.5g' % u_b)+r"\ \mathrm{"+unit_b+" },\ P="+str(confidence_P)
+    # u_b：截距的（A类）延伸不确定度 u_b
 
-    AnalyseLsmData = namedtuple('AnalyseLsmData', ['m', 'mx', 'mx2', 'b', 'bx', 'bx2', 'r', 'rx', 'rx2', 's_m', 's_mx', 's_mx2', 's_b', 's_bx', 's_bx2'])
+    AnalyseLsmData = namedtuple('AnalyseLsmData', ['m', 'mx', 'mx2', 'b', 'bx', 'bx2', 'r', 'rx', 'rx2', 'u_m', 'u_mx', 'u_mx2', 'u_b', 'u_bx', 'u_bx2'])
 
-    return AnalyseLsmData(lsm_res.slope, mx, mx2, lsm_res.intercept, bx, bx2, lsm_res.rvalue, rx, rx2, lsm_res.stderr, s_mx, s_mx2, lsm_res.intercept_stderr, s_bx, s_bx2)
+    return AnalyseLsmData(lsm_res.slope, mx, mx2, lsm_res.intercept, bx, bx2, lsm_res.rvalue, rx, rx2, u_m, u_mx, u_mx2, u_b, u_bx, u_bx2)
 
 
 def analyse_com(exp, varr=(), constt=(), unit='', confidence_P=0.95):
