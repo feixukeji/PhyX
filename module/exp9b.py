@@ -32,7 +32,7 @@ def handle(workpath,extension):
 
         ax.plot(data["n"], data["L"], "o", color='r', markersize=3)
         ax.plot(data["n"], res_lsm.b + res_lsm.m * data["n"], color='b', linewidth=1.5)
-        ax.set_title("共振干涉法测空气中声速的最小二乘法拟合图", fontproperties=zhfont)
+        ax.set_title("相位比较法测水中声速的最小二乘法拟合图", fontproperties=zhfont)
         ax.set_xlabel("n")
         ax.set_ylabel("The nth Position (cm)")
         
