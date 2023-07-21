@@ -22,7 +22,8 @@ def handle(workpath,extension):
         data["P"] = data["U_DC"]*data["U_DC"]/data["R"]*1000
         data["K"] = data["U_AC"]/data["U_DC"]
 
-        fig_P, ax_P = plt.subplots()
+        ax.clear()
+        fig_P, ax_P = fig, ax
         ax_P.plot(data["R"], data["P"], "o", color='r', markersize=3)
         ax_P.plot(data["R"], data["P"], color='b', linewidth=1.5)
         ax_P.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -34,7 +35,8 @@ def handle(workpath,extension):
         imgpath_P=workpath+"Power.jpg"
         fig_P.savefig(imgpath_P, dpi=300, bbox_inches='tight')
 
-        fig_K, ax_K=plt.subplots()
+        ax.clear()
+        fig_K, ax_K = fig, ax
         ax_K.plot(data["R"], data["K"], "o", color='r', markersize=3)
         ax_K.plot(data["R"], data["K"], color='b', linewidth=1.5)
         ax_K.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))

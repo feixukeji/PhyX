@@ -32,7 +32,7 @@ def handle(workpath,extension):
 
         res_E=analyse_com("E=(8*D*L)/(pi*d**2*l*m)",(("D",res_D.average,res_D.unc),("L",res_L.average,res_L.unc),("d",res_d.average/10,res_d.unc/10),("l",res_l.average,res_l.unc),("m",abs(res_lsm.m),res_lsm.u_m)),(),"N/cm^2")
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -45,7 +45,7 @@ def handle(workpath,extension):
         ax.set_xlabel("金属丝受拉力 F/N", fontproperties=zhfont)
         ax.set_ylabel("标尺读数 b/cm", fontproperties=zhfont)
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
-        
+
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight') # 保存生成的图像
 
@@ -87,7 +87,7 @@ def handle(workpath,extension):
         docu.add_paragraph()
 
         docu.add_paragraph("【Latex代码】")
-        
+
         insert_data(docu, "标尺到平面镜的距离D", res_D, "latex")
         insert_data(docu, "光杠杆的臂长l", res_l, "latex")
         insert_data(docu, "钢丝原长L", res_L, "latex")
@@ -117,9 +117,9 @@ def handle(workpath,extension):
         docu.add_paragraph()
 
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
-        
+
         os.remove(imgpath) # 删除刚才保存的图像
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

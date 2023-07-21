@@ -25,12 +25,12 @@ def handle(workpath,extension):
         data.dropna(inplace = True)
         data["两倍距离2s(m)"]=data["s"]/50
         data["速度平方v^2(m^2/s^2)"]=(delta_s/((data["t1"]+data["t2"]+data["t3"])/3))**2
-        
+
         res_lsm=analyse_lsm(data["两倍距离2s(m)"], data["速度平方v^2(m^2/s^2)"], 'X', 'Y', 'm/s^2', 'm^2/s^2') # 线性回归
-        
+
         res_g=analyse_com("g=m*L/h",(),(("m",res_lsm.m),("L",L),("h",h)),"m/s^2")
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -43,7 +43,7 @@ def handle(workpath,extension):
         ax.set_xlabel("两倍距离 $2s\\rm{(m)}$", fontproperties=zhfont)
         ax.set_ylabel("速度平方 $v^2\\rm{(m^2/s^2)}$", fontproperties=zhfont)
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
-        
+
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight') # 保存生成的图像
 
@@ -55,7 +55,7 @@ def handle(workpath,extension):
         docu.add_paragraph()
         docu.add_paragraph("【Latex代码在下面，请向下翻阅】")
         docu.add_paragraph()
-        
+
         docu.add_paragraph("速度平方v^2与两倍距离2s的关系：")
         table = docu.add_table(rows=len(data["两倍距离2s(m)"])+1, cols=2, style="Table Grid") # 在Word文档中插入表格
         table.cell(0,0).text = '两倍距离2s(m)'
@@ -74,15 +74,15 @@ def handle(workpath,extension):
         docu.add_paragraph()
 
         docu.add_paragraph("【Latex代码】")
-        
+
         insert_data_lsm(docu, res_lsm, "latex")
         docu.add_paragraph("重力加速度")
         docu.add_paragraph(res_g.ansx)
 
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
-        
+
         os.remove(imgpath) # 删除刚才保存的图像
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

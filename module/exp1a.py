@@ -25,7 +25,7 @@ def handle(workpath,extension):
         res=analyse_lsm(data["t"], data["v"], 't', 'v', 'm/s^2', 'm/s') # 最小二乘多项式拟合之线性回归
         res_g=analyse_com("g=2*m",(),(("m",res.m,res.u_m),),"m/s^2")
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -52,7 +52,7 @@ def handle(workpath,extension):
         docu.add_paragraph()
 
         docu.add_picture(imgpath)
-        
+
         insert_data_lsm(docu, res, "word")
         docu.add_paragraph("重力加速度")
         docu.add_paragraph()._element.append(latex_to_word(res_g.ansx2))
@@ -66,7 +66,7 @@ def handle(workpath,extension):
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
 
         os.remove(imgpath) # 删除刚才保存的图像
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

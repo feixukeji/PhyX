@@ -16,7 +16,7 @@ def handle(workpath,extension):
             data=pd.read_csv(excelpath, header=0, names=["r","t","L","r0","t0","m"], encoding=encode) # 读取csv文件
         else:
             data=pd.read_excel(excelpath, header=0, names=["r","t","L","r0","t0","m"]) # 读取xls/xlsx文件
-        
+
         os.remove(excelpath) # 读取Excel数据后删除文件
 
         data["r"]/=100
@@ -34,7 +34,7 @@ def handle(workpath,extension):
 
         res_lsm=analyse_lsm(data["r"], data["t"], "r", "t", "m^{-1}·s^{-2}", "m·s^{-2}") # 线性回归
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -47,11 +47,11 @@ def handle(workpath,extension):
         ax.set_xlabel("$r^2/m^2$", fontproperties=zhfont)
         ax.set_ylabel("$rT^2/(m\cdot s^2)$", fontproperties=zhfont)
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
-        
+
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight') # 保存生成的图像
 
-        
+
         res_ic=analyse_com("IC=b*m",(),(("b",res_lsm.b),("m",data["m"][0])),"kg·m^2")
         res_m=analyse_com("M=IC/(g*r*t*t/(4*pi*pi)-L*L/12-r*r)",(),(("IC",res_ic.ans),("r",data["r0"][0]),("t",data["t0"][0]),("L",data["L"][0]),("g",9.8)),"kg")
 
@@ -68,7 +68,7 @@ def handle(workpath,extension):
         docu.add_paragraph("截距")
         docu.add_paragraph()._element.append(latex_to_word(res_lsm.bx2))
 
-        
+
         docu.add_paragraph("转动惯量")
         docu.add_paragraph()._element.append(latex_to_word(res_ic.ansx2))
         docu.add_paragraph("物体的质量")
@@ -82,7 +82,7 @@ def handle(workpath,extension):
         docu.add_paragraph("截距")
         docu.add_paragraph(res_lsm.bx)
 
-        
+
         docu.add_paragraph("转动惯量")
         docu.add_paragraph(res_ic.ansx)
         docu.add_paragraph("物体的质量")
@@ -91,7 +91,7 @@ def handle(workpath,extension):
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
 
         os.remove(imgpath)
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

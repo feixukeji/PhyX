@@ -32,10 +32,10 @@ def handle(workpath, extension):
 
         #   开始绘制I-V曲线
         zhfont = matplotlib.font_manager.FontProperties(fname="SourceHanSansSC-Regular.otf")
-        
+
         imgpath = workpath + "1.jpg"
 
-        fig, ax = plt.subplots()  # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))

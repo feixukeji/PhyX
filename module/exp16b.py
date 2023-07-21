@@ -19,7 +19,7 @@ def handle(workpath,extension):
 
         os.remove(excelpath) # 读取Excel数据后删除文件
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -34,7 +34,7 @@ def handle(workpath,extension):
         ax.set_xlabel("电流I/mA", fontproperties=zhfont)
         ax.set_ylabel("相对光强L（光电池电压U/mV）", fontproperties=zhfont)
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
-        
+
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight') # 保存生成的图像
 
@@ -46,9 +46,9 @@ def handle(workpath,extension):
         docu.add_picture(imgpath)
 
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
-        
+
         os.remove(imgpath) # 删除刚才保存的图像
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

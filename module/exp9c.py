@@ -20,7 +20,8 @@ def handle(workpath,extension):
         os.remove(excelpath) # 读取Excel数据后删除文件
 
         res_plexiglass=analyse_lsm(data["t_plexiglass"], data["L_plexiglass"], 't', 'L', 'cm/μs', 'cm')
-        fig_plexiglass, ax_plexiglass=plt.subplots()
+        ax.clear()
+        fig_plexiglass, ax_plexiglass = fig, ax
         ax_plexiglass.plot(data["t_plexiglass"], data["L_plexiglass"], "o", color='r', markersize=3)
         ax_plexiglass.plot(data["t_plexiglass"], res_plexiglass.b + res_plexiglass.m*data["t_plexiglass"], color='b', linewidth=1.5)
         ax_plexiglass.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -33,7 +34,8 @@ def handle(workpath,extension):
         fig_plexiglass.savefig(imgpath_plexiglass, dpi=300, bbox_inches='tight')
 
         res_brass=analyse_lsm(data["t_brass"], data["L_brass"], 't', 'L', 'cm/μs', 'cm')
-        fig_brass, ax_brass=plt.subplots()
+        ax.clear()
+        fig_brass, ax_brass = fig, ax
         ax_brass.plot(data["t_brass"], data["L_brass"], "o", color='r', markersize=3)
         ax_brass.plot(data["t_brass"], res_brass.b + res_brass.m*data["t_brass"], color='b', linewidth=1.5)
         ax_brass.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))

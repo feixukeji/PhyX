@@ -36,7 +36,7 @@ def handle(workpath, extension):
 
         imgpath1 = workpath + "1.jpg"
 
-        fig, ax = plt.subplots()  # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -58,7 +58,7 @@ def handle(workpath, extension):
 
         P *= 1000  # 换单位
 
-        fig, ax = plt.subplots()  # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))

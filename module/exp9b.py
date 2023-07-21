@@ -24,7 +24,7 @@ def handle(workpath,extension):
 
         res_f=analyse(data["f"], 0.001, 10, "f", "Hz")
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -35,7 +35,7 @@ def handle(workpath,extension):
         ax.set_title("相位比较法测水中声速的最小二乘法拟合图", fontproperties=zhfont)
         ax.set_xlabel("n")
         ax.set_ylabel("The nth Position (cm)")
-        
+
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight') # 保存生成的图像
 
@@ -58,7 +58,7 @@ def handle(workpath,extension):
         docu.add_paragraph("波长λ的延伸不确定度")
         docu.add_paragraph()._element.append(latex_to_word(lamda.uncx2))
         docu.add_paragraph()
-        
+
         docu.add_paragraph("谐振频率的不确定度")
         docu.add_paragraph()._element.append(latex_to_word(res_f.delta_bx2))
         docu.add_paragraph()
@@ -70,7 +70,7 @@ def handle(workpath,extension):
         docu.add_paragraph("声速v最终结果")
         docu.add_paragraph()._element.append(latex_to_word(v.finalx2))
         docu.add_paragraph()
-        
+
         docu.add_paragraph("【Latex代码】")
 
         insert_data_lsm(docu, res_lsm, option="latex")
@@ -89,11 +89,11 @@ def handle(workpath,extension):
         docu.add_paragraph("声速v最终结果")
         docu.add_paragraph(v.finalx)
         docu.add_paragraph()
-        
+
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
-        
+
         os.remove(imgpath) # 删除刚才保存的图像
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

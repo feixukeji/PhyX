@@ -20,10 +20,10 @@ def handle(workpath,extension):
         os.remove(excelpath) # 读取Excel数据后删除文件
 
         data["Phi_squared"] = [4, 16, 64, 205.9225]
-        
+
         res1=analyse_lsm(data["Phi_squared"], data["I_436"], 'Φ', 'I', 'nA/mm', 'nA')
         res2=analyse_lsm(data["Phi_squared"], data["I_546"], 'Φ', 'I', 'nA/mm', 'nA')
-        fig, ax=plt.subplots()
+        ax.clear()
         ax.plot(data["Phi_squared"], data["I_436"], "^", color='g', markersize=3)
         ax.plot(data["Phi_squared"], res1.b + res1.m*data["Phi_squared"], color='g', markersize=1.5, label="λ=435.8nm")
         ax.plot(data["Phi_squared"], data["I_546"], "v", color='m', markersize=3)

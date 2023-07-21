@@ -27,10 +27,10 @@ def handle(workpath,extension):
         data["拉力F/N"]=data["mn"]/1000*9.8
         data["通过光电门时的瞬时速度v(m/s)"]=delta_s/((data["t1"]+data["t2"]+data["t3"])/3)
         data["通过光电门时的瞬时加速度a(m/s^2)"]=data["通过光电门时的瞬时速度v(m/s)"]**2/(2*s)
-        
+
         res=analyse_lsm(data["通过光电门时的瞬时加速度a(m/s^2)"], data["拉力F/N"], 'a', 'F', 'kg', 'N') # 最小二乘多项式拟合之线性回归
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -43,7 +43,7 @@ def handle(workpath,extension):
         ax.set_xlabel("通过光电门时的瞬时加速度 $a_n\\rm{(m/s^2)}$", fontproperties=zhfont)
         ax.set_ylabel("拉力 $F_n\\rm{(N)}$", fontproperties=zhfont)
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
-        
+
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight') # 保存生成的图像
 
@@ -53,7 +53,7 @@ def handle(workpath,extension):
 
         docu.add_paragraph(name()) # 在Word文档中添加文字
         docu.add_paragraph()
-        
+
         docu.add_paragraph("拉力与通过光电门时的瞬时加速度的关系：")
         table = docu.add_table(rows=len(data["拉力F/N"])+1, cols=3, style="Table Grid") # 在Word文档中插入表格
         table.cell(0,0).text = '拉力F/N'
@@ -69,9 +69,9 @@ def handle(workpath,extension):
         docu.add_paragraph("斜率 M="+('%.5g' % res.m)+" kg="+('%.5g' % (res.m*1000))+" g")
 
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
-        
+
         os.remove(imgpath) # 删除刚才保存的图像
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

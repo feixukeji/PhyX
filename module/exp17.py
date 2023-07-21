@@ -16,12 +16,12 @@ def handle(workpath,extension):
             data=pd.read_csv(excelpath, header=0, names=["t","u","r1","r2","E"], encoding=encode) # 读取csv文件
         else:
             data=pd.read_excel(excelpath, header=0, names=["t","u","r1","r2","E"]) # 读取xls/xlsx文件
-        
+
         os.remove(excelpath) # 读取Excel数据后删除文件
-        
+
         res_lsm=analyse_lsm(data["t"], data["u"], "T", "U", "℃/mV", "mV") # 线性回归
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -34,11 +34,11 @@ def handle(workpath,extension):
         ax.set_xlabel("温度 U/℃", fontproperties=zhfont)
         ax.set_ylabel("电压 U/mV", fontproperties=zhfont)
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
-        
+
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight') # 保存生成的图像
 
-        
+
         res_a=analyse_com("α=4*m/e",(),(("m",res_lsm.m),("e",data["E"][0]*1000)),"℃^{-1}")
         res_r=analyse_com("R=r*(1+α*(0-t))",(),(("r",data["r1"][0]),("α",res_a.ans),("t",data["t"][0])),"Ω")
 
@@ -55,7 +55,7 @@ def handle(workpath,extension):
         docu.add_paragraph("截距")
         docu.add_paragraph()._element.append(latex_to_word(res_lsm.bx2))
 
-        
+
         docu.add_paragraph("电阻温度系数")
         docu.add_paragraph()._element.append(latex_to_word(res_a.ansx2))
         docu.add_paragraph("零摄氏度时的阻值")
@@ -69,7 +69,7 @@ def handle(workpath,extension):
         docu.add_paragraph("截距")
         docu.add_paragraph(res_lsm.bx)
 
-        
+
         docu.add_paragraph("电阻温度系数")
         docu.add_paragraph(res_a.ansx)
         docu.add_paragraph("零摄氏度时的阻值")
@@ -78,7 +78,7 @@ def handle(workpath,extension):
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
 
         os.remove(imgpath)
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

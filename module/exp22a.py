@@ -23,7 +23,7 @@ def handle(workpath,extension):
 
         res_lsm=analyse_lsm(data["k"], data["x"], "k", "x_k", "mm", "mm") # 线性回归
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -36,11 +36,11 @@ def handle(workpath,extension):
         ax.set_xlabel("$k$", fontproperties=zhfont)
         ax.set_ylabel("$x_k/mm$", fontproperties=zhfont)
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
-        
+
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight') # 保存生成的图像
 
-        
+
         res_a=analyse_com("a=L*λ/m",(),(("m",res_lsm.m),("L",data["L"][0]),("λ",0.6328)),"mm")
         if(res_a.ans-data["d"][0]>=0):
             res_b=analyse_com("b=(a-d)/d*100",(),(("d",data["d"][0]),("a",res_a.ans)),"%")
@@ -60,7 +60,7 @@ def handle(workpath,extension):
         docu.add_paragraph("截距")
         docu.add_paragraph()._element.append(latex_to_word(res_lsm.bx2))
 
-        
+
         docu.add_paragraph("测得缝宽")
         docu.add_paragraph()._element.append(latex_to_word(res_a.ansx2))
         docu.add_paragraph("相对误差")
@@ -74,7 +74,7 @@ def handle(workpath,extension):
         docu.add_paragraph("截距")
         docu.add_paragraph(res_lsm.bx)
 
-        
+
         docu.add_paragraph("测得缝宽")
         docu.add_paragraph(res_a.ansx)
         docu.add_paragraph("相对误差")
@@ -82,7 +82,7 @@ def handle(workpath,extension):
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
 
         os.remove(imgpath)
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

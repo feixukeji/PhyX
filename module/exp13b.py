@@ -21,7 +21,7 @@ def handle(workpath,extension):
 
         plt.cla() # 清除之前作的图像
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
         imgpath=workpath+"1.jpg"
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -36,7 +36,7 @@ def handle(workpath,extension):
         ax.legend(prop=zhfont)
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
 
-        fig, ax = plt.subplots()
+        ax.clear()
         imgpath=workpath+"2.jpg"
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -51,13 +51,13 @@ def handle(workpath,extension):
         ax.legend(prop=zhfont)
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
 
-        fig, ax = plt.subplots()
+        ax.clear()
         imgpath=workpath+"3.jpg"
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         # 设置副刻度为主刻度的一半
-        
+
         ax.plot(data["C.uF"], data["pi.AC"] / data["pi.DC"] * 100, 'o-', color='r', markersize=3, label="π型RC电路") # 绘制数据点
         ax.plot(data["C.uF"], data["whole.AC"] / data["whole.DC"] * 100, 'o-', color='b', markersize=3, label="全波整流电路") # 绘制数据点
         ax.set_title("纹波系数随电容大小的变化曲线", fontproperties=zhfont)
@@ -77,12 +77,12 @@ def handle(workpath,extension):
         docu.add_picture(workpath+"1.jpg") # 在Word文档中添加图片
         docu.add_picture(workpath+"2.jpg") # 在Word文档中添加图片
         docu.add_picture(workpath+"3.jpg") # 在Word文档中添加图片
-        
+
 
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
-        
+
         os.remove(imgpath) # 删除刚才保存的图像
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

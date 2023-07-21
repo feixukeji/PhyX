@@ -42,9 +42,10 @@ def handle(workpath, extension):
         #   开始绘制曲线
         zhfont = matplotlib.font_manager.FontProperties(fname="SourceHanSansSC-Regular.otf")
         imgpath = workpath + "1.jpg"
-        
-        fig, ax_U=plt.subplots() # 新建绘图对象
-        
+
+        ax.clear()
+        ax_U = ax
+
         ax_U.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax_U.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         # 设置副刻度为主刻度的一半
@@ -66,6 +67,7 @@ def handle(workpath, extension):
         ax_I.legend(loc='lower right')
 
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        ax_I.remove()  # 删除双轴，否则影响以后的图
 
         #   写入文件
         docu = Document()

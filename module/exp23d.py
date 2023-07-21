@@ -20,7 +20,7 @@ def handle(workpath,extension):
 
         os.remove(excelpath) # 读取Excel数据后删除文件
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
         ax.plot(data["U_365"], data["I_365"], "o", color='b', markersize=3)
         data["I_365"] = savgol_filter(data["I_365"], 7, 4)
         ax.plot(data["U_365"], data["I_365"], color='b', markersize=1.5, label="λ=365.0nm")
@@ -43,7 +43,7 @@ def handle(workpath,extension):
         ax.set_title("光电管的伏安特性曲线", fontproperties=zhfont)
         ax.set_xlabel("Collector Voltage (V)")
         ax.set_ylabel("Current in Phototube (nA)")
-        
+
         imgpath=workpath+"1.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
 
@@ -56,9 +56,9 @@ def handle(workpath,extension):
         docu.add_paragraph("从上图中观察出5条曲线的拐点，记录其对应的电压与电流，再利用“近代：光电效应测普朗克常量”实验工具即可获得用“拐点法”测得的普朗克常数。")
 
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
-        
+
         os.remove(imgpath)
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

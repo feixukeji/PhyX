@@ -23,7 +23,7 @@ def handle(workpath,extension):
 
         res1=analyse_lsm(data["distanse_inverse_square"], data["I_436"], '(L^{-2})', 'I', 'nA⋅m^2', 'nA')
         res2=analyse_lsm(data["distanse_inverse_square"], data["I_546"], '(L^{-2})', 'I', 'nA⋅m^2', 'nA')
-        fig, ax=plt.subplots()
+        ax.clear()
         ax.plot(data["distanse_inverse_square"], data["I_436"], "^", color='g', markersize=3)
         ax.plot(data["distanse_inverse_square"], res1.b + res1.m*data["distanse_inverse_square"], color='g', markersize=1.5, label="λ=435.8nm")
         ax.plot(data["distanse_inverse_square"], data["I_546"], "D", color='m', markersize=3)
@@ -34,10 +34,10 @@ def handle(workpath,extension):
         ax.set_title("饱和光电流与距离的负二次方的关系", fontproperties=zhfont)
         ax.set_xlabel("Distance Raised to the Power of Minus Two (m$^{-2}$)")
         ax.set_ylabel("Saturation Current (nA)")
-        
+
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
- 
+
         docu=Document()
         docu.styles['Normal'].font.name = '微软雅黑'
         docu.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑') # 设置Word文档字体
@@ -57,7 +57,7 @@ def handle(workpath,extension):
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
 
         os.remove(imgpath)
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

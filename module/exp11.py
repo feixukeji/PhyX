@@ -22,7 +22,7 @@ def handle(workpath,extension):
 
         data["T"] = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70]
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
         ax.plot(data["T"], data["I"], "o", color='r', markersize=3, label="Bridge Current")
         data["I"] = savgol_filter(data["I"], 5, 2)
         ax.plot(data["T"], data["I"], color='b', markersize=1.5, label="5 pts SG smooth of \"Bridge Current\"")
@@ -33,7 +33,7 @@ def handle(workpath,extension):
         ax.set_title("半导体温度计电桥电流与温度的关系", fontproperties=zhfont)
         ax.set_xlabel("Temperature (°C)")
         ax.set_ylabel("Bridge Current (μA)")
-        
+
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
 
@@ -46,9 +46,9 @@ def handle(workpath,extension):
         docu.add_paragraph()
 
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
-        
+
         os.remove(imgpath)
-    
+
         return 0 # 若成功，返回0
     except:
         traceback.print_exc() # 打印错误

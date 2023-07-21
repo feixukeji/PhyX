@@ -6,6 +6,8 @@ import threading
 import random
 import matplotlib
 from modulelist import *
+# from memory_profiler import profile  # test for memory leak
+# import gc
 
 app = Flask(__name__)
 
@@ -54,6 +56,7 @@ def exam(num):
 
 
 @app.route('/<string:num>/handle', methods=['POST'])  # 接收上传的Excel文件并处理
+# @profile
 def handle(num):
     if num in numlist:
         if 'file' in request.files:
@@ -68,6 +71,7 @@ def handle(num):
                     file.save(workpath + eval(num + '.name()') + '.' + extension)
                     threading.Thread(target=removedir, args=(workpath,)).start()
                     if eval(num + '.handle(workpath, extension)') == 0:
+                        # gc.collect()
                         return {
                             "code": 0,
                             "data": fileid

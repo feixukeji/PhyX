@@ -6,13 +6,13 @@
 
 ## 目录结构说明
 
-```
+```text
 │ head.py（实验数据处理程序万能头）
 │ main.py（主程序）
 │ modulelist.py（模块清单）
 │ requirements.txt（需要预先安装的包）
 │ SourceHanSansSC-Regular.otf（作图字体文件）
-│ 
+│
 ├─api（API代码）
 │      calc.py（数据处理API）
 │      insert.py（公式插入API）
@@ -89,7 +89,7 @@ pip install latex2mathml
 - 使用之前未曾使用过的库/函数（如 scipy.signal.savgol_filter），**必须**在注释中说明其功能。
 - 提交的代码不应有多余的输出。
 - 作图及线性拟合（参考 [exp5.py](module/exp5.py)）
-  - 面向绘图对象作图（`fig, ax = plt.subplots()`）。
+  - 面向绘图对象作图（先 `ax.clear()` 初始化）。
   - 设置副刻度为主刻度的一半，但保持主刻度为默认。
   - 刻度朝内（已在 main.py 中统一设置）。
   - 若一张图只有一组点线，则点使用红色（`color='r'`），线使用蓝色（`color='b'`），且线覆盖在点的上面；若一张图有多组点线，则同一组点线的颜色应当相同，并依次使用蓝(b)、红(r)、绿(g)、紫(m)、橙(orange)、青(c)。

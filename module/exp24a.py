@@ -25,7 +25,7 @@ def handle(workpath,extension):
 
         res_e=analyse_com("q=m",(("m",abs(res.m),res.u_m),),(),"E-19 C")
 
-        fig, ax=plt.subplots() # 新建绘图对象
+        ax.clear()
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -78,7 +78,7 @@ def handle(workpath,extension):
         docu.add_paragraph()
 
         docu.save(workpath+name()+".docx") # 保存Word文档，注意文件名必须与name()函数返回值一致
-        
+
         os.remove(imgpath) # 删除刚才保存的图像
 
         return 0 # 若成功，返回0
