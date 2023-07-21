@@ -40,8 +40,8 @@ def handle(workpath,extension):
         ax_K.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax_K.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax_K.set_title("纹波系数和负载 $K$–$R$ 曲线", fontproperties=zhfont)
-        ax_P.set_xlabel("Load Resistance ($\Omega$)")
-        ax_P.set_ylabel("Ripple Factor")
+        ax_K.set_xlabel("Load Resistance ($\Omega$)")
+        ax_K.set_ylabel("Ripple Factor")
 
         imgpath_K=workpath+"ripple.jpg"
         fig_K.savefig(imgpath_K, dpi=300, bbox_inches='tight')
