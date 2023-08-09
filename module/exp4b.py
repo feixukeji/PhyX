@@ -34,7 +34,7 @@ def handle(workpath,extension):
 
         res_lsm=analyse_lsm(data["r"], data["t"], "r", "t", "m^{-1}·s^{-2}", "m·s^{-2}") # 线性回归
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -49,7 +49,8 @@ def handle(workpath,extension):
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
 
         imgpath=workpath+"img.jpg"
-        fig.savefig(imgpath, dpi=300, bbox_inches='tight') # 保存生成的图像
+        fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
 
         res_ic=analyse_com("IC=b*m",(),(("b",res_lsm.b),("m",data["m"][0])),"kg·m^2")

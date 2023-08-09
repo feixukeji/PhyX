@@ -20,7 +20,7 @@ def handle(workpath,extension):
 
         os.remove(excelpath) # 读取Excel数据后删除文件
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
         ax.plot(data["U_365"], data["I_365"], "o", color='b', markersize=3)
         data["I_365"] = savgol_filter(data["I_365"], 7, 4)
         ax.plot(data["U_365"], data["I_365"], color='b', markersize=1.5, label="λ=365.0nm")
@@ -46,6 +46,7 @@ def handle(workpath,extension):
 
         imgpath=workpath+"1.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
         docu=Document()
         docu.styles['Normal'].font.name = '微软雅黑'

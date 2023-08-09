@@ -23,7 +23,7 @@ def handle(workpath,extension):
 
         res1=analyse_lsm(data["distanse_inverse_square"], data["I_436"], '(L^{-2})', 'I', 'nA⋅m^2', 'nA')
         res2=analyse_lsm(data["distanse_inverse_square"], data["I_546"], '(L^{-2})', 'I', 'nA⋅m^2', 'nA')
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
         ax.plot(data["distanse_inverse_square"], data["I_436"], "^", color='g', markersize=3)
         ax.plot(data["distanse_inverse_square"], res1.b + res1.m*data["distanse_inverse_square"], color='g', markersize=1.5, label="λ=435.8nm")
         ax.plot(data["distanse_inverse_square"], data["I_546"], "D", color='m', markersize=3)
@@ -37,6 +37,7 @@ def handle(workpath,extension):
 
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
         docu=Document()
         docu.styles['Normal'].font.name = '微软雅黑'

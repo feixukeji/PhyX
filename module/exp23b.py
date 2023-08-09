@@ -23,7 +23,7 @@ def handle(workpath,extension):
 
         res1=analyse_lsm(data["Phi_squared"], data["I_436"], 'Φ', 'I', 'nA/mm', 'nA')
         res2=analyse_lsm(data["Phi_squared"], data["I_546"], 'Φ', 'I', 'nA/mm', 'nA')
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
         ax.plot(data["Phi_squared"], data["I_436"], "^", color='g', markersize=3)
         ax.plot(data["Phi_squared"], res1.b + res1.m*data["Phi_squared"], color='g', markersize=1.5, label="λ=435.8nm")
         ax.plot(data["Phi_squared"], data["I_546"], "v", color='m', markersize=3)
@@ -37,6 +37,7 @@ def handle(workpath,extension):
 
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
         docu=Document()
         docu.styles['Normal'].font.name = '微软雅黑'

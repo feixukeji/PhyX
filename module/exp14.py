@@ -22,7 +22,7 @@ def handle(workpath,extension):
         data["P"] = data["U_DC"]*data["U_DC"]/data["R"]*1000
         data["K"] = data["U_AC"]/data["U_DC"]
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
         fig_P, ax_P = fig, ax
         ax_P.plot(data["R"], data["P"], "o", color='r', markersize=3)
         ax_P.plot(data["R"], data["P"], color='b', linewidth=1.5)
@@ -34,8 +34,9 @@ def handle(workpath,extension):
 
         imgpath_P=workpath+"Power.jpg"
         fig_P.savefig(imgpath_P, dpi=300, bbox_inches='tight')
+        plt.close()
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
         fig_K, ax_K = fig, ax
         ax_K.plot(data["R"], data["K"], "o", color='r', markersize=3)
         ax_K.plot(data["R"], data["K"], color='b', linewidth=1.5)
@@ -47,6 +48,7 @@ def handle(workpath,extension):
 
         imgpath_K=workpath+"ripple.jpg"
         fig_K.savefig(imgpath_K, dpi=300, bbox_inches='tight')
+        plt.close()
 
         docu=Document()
         docu.styles['Normal'].font.name = '微软雅黑'

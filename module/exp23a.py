@@ -20,7 +20,7 @@ def handle(workpath,extension):
         os.remove(excelpath) # 读取Excel数据后删除文件
 
         res=analyse_lsm(data["v"], data["U0"], 'ν', 'U', 'V/Thz', 'V')
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
         ax.plot(data["v"], data["U0"], "o", color='r', markersize=3)
         ax.plot(data["v"], res.b + res.m*data["v"], color='b', linewidth=1.5)
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -31,6 +31,7 @@ def handle(workpath,extension):
 
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
         docu=Document()
         docu.styles['Normal'].font.name = '微软雅黑'

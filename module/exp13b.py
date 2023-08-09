@@ -21,7 +21,7 @@ def handle(workpath,extension):
 
         plt.cla() # 清除之前作的图像
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
         imgpath=workpath+"1.jpg"
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -35,8 +35,9 @@ def handle(workpath,extension):
         ax.set_ylabel("$U/V$") # 支持latex
         ax.legend(prop=zhfont)
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
         imgpath=workpath+"2.jpg"
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -50,8 +51,9 @@ def handle(workpath,extension):
         ax.set_ylabel("$U/V$") # 支持latex
         ax.legend(prop=zhfont)
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
         imgpath=workpath+"3.jpg"
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -65,6 +67,7 @@ def handle(workpath,extension):
         ax.set_ylabel("纹波系数$\kappa(\%)$", fontproperties=zhfont) # 支持latex
         ax.legend(prop=zhfont)
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
         docu=Document()
         docu.styles['Normal'].font.name = '微软雅黑'

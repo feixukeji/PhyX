@@ -22,7 +22,7 @@ def handle(workpath,extension):
 
         data["T"] = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70]
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
         ax.plot(data["T"], data["I"], "o", color='r', markersize=3, label="Bridge Current")
         data["I"] = savgol_filter(data["I"], 5, 2)
         ax.plot(data["T"], data["I"], color='b', markersize=1.5, label="5 pts SG smooth of \"Bridge Current\"")
@@ -36,6 +36,7 @@ def handle(workpath,extension):
 
         imgpath=workpath+"img.jpg"
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
         docu=Document()
         docu.styles['Normal'].font.name = '微软雅黑'

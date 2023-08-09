@@ -25,7 +25,7 @@ def handle(workpath, extension):
         y = pd.Series([float(y) for y in data["y"][1:]])
         res = analyse_lsm(x, y, data["x"][0], data["y"][0], data["unit_m"][1], data["unit_y"][1])  # 最小二乘多项式拟合之线性回归
 
-        ax.clear()  # 新建绘图对象
+        fig, ax = plt.subplots()  # 新建绘图对象  # 新建绘图对象
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -39,7 +39,8 @@ def handle(workpath, extension):
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
 
         imgpath = workpath + "img.jpg"
-        fig.savefig(imgpath, dpi=300, bbox_inches='tight')  # 保存生成的图像
+        fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
         docu = Document()
         docu.styles['Normal'].font.name = '微软雅黑'

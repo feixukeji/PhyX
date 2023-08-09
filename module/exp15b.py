@@ -36,7 +36,7 @@ def handle(workpath, extension):
 
         imgpath1 = workpath + "1.jpg"
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -52,13 +52,14 @@ def handle(workpath, extension):
         ax.set_ylabel('I/mA')
         ax.legend()
         fig.savefig(imgpath1, dpi=300, bbox_inches='tight')
+        plt.close()
 
         #   开始画图P-Rl
         imgpath2 = workpath + '2.jpg'
 
         P *= 1000  # 换单位
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -74,6 +75,7 @@ def handle(workpath, extension):
         ax.set_ylabel('R/' + r'$\Omega$')
         ax.legend()
         fig.savefig(imgpath2, dpi=300, bbox_inches='tight')
+        plt.close()
 
         # 文本内容
         # 电流

@@ -12,5 +12,3 @@ from docx import Document
 from docx.oxml.ns import qn
 from api.calc import *
 from api.insert import *
-
-fig, ax = plt.subplots() # 新建绘图对象

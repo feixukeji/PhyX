@@ -19,7 +19,7 @@ def handle(workpath,extension):
 
         os.remove(excelpath) # 读取Excel数据后删除文件
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -36,7 +36,8 @@ def handle(workpath,extension):
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
 
         imgpath=workpath+"img.jpg"
-        fig.savefig(imgpath, dpi=300, bbox_inches='tight') # 保存生成的图像
+        fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
         docu=Document()
         docu.styles['Normal'].font.name = '微软雅黑'

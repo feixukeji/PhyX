@@ -32,7 +32,7 @@ def handle(workpath,extension):
 
         res_E=analyse_com("E=(8*D*L)/(pi*d**2*l*m)",(("D",res_D.average,res_D.unc),("L",res_L.average,res_L.unc),("d",res_d.average/10,res_d.unc/10),("l",res_l.average,res_l.unc),("m",abs(res_lsm.m),res_lsm.u_m)),(),"N/cm^2")
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -47,7 +47,8 @@ def handle(workpath,extension):
         # 添加标题和轴标签，详见 https://www.runoob.com/matplotlib/matplotlib-label.html
 
         imgpath=workpath+"img.jpg"
-        fig.savefig(imgpath, dpi=300, bbox_inches='tight') # 保存生成的图像
+        fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
         docu=Document()
         docu.styles['Normal'].font.name = '微软雅黑'

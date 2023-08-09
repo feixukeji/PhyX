@@ -24,7 +24,7 @@ def handle(workpath,extension):
 
         res_f=analyse(data["f"], 0.001, 10, "f", "Hz")
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -37,7 +37,8 @@ def handle(workpath,extension):
         ax.set_ylabel("The nth Position (cm)")
 
         imgpath=workpath+"img.jpg"
-        fig.savefig(imgpath, dpi=300, bbox_inches='tight') # 保存生成的图像
+        fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
         docu=Document()
         docu.styles['Normal'].font.name = '微软雅黑'

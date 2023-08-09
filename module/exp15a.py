@@ -35,7 +35,7 @@ def handle(workpath, extension):
 
         imgpath = workpath + "1.jpg"
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
 
         ax.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
         ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -47,6 +47,7 @@ def handle(workpath, extension):
         ax.set_xlabel("U/V")
         ax.set_ylabel('I/mA')
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
+        plt.close()
 
         docu = Document()
         docu.styles['Normal'].font.name = '微软雅黑'

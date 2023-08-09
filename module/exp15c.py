@@ -43,7 +43,7 @@ def handle(workpath, extension):
         zhfont = matplotlib.font_manager.FontProperties(fname="SourceHanSansSC-Regular.otf")
         imgpath = workpath + "1.jpg"
 
-        ax.clear()
+        fig, ax = plt.subplots()  # 新建绘图对象
         ax_U = ax
 
         ax_U.xaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(2))
@@ -67,7 +67,8 @@ def handle(workpath, extension):
         ax_I.legend(loc='lower right')
 
         fig.savefig(imgpath, dpi=300, bbox_inches='tight')
-        ax_I.remove()  # 删除双轴，否则影响以后的图
+        plt.close()
+        # ax_I.remove()  # 删除双轴，否则影响以后的图
 
         #   写入文件
         docu = Document()
