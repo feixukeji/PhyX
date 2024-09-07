@@ -9,7 +9,6 @@
 	<title>大雾实验工具-{{name}}</title>
 	<link rel="icon" href="/static/icon.svg" type="image/x-icon"/>
     <link rel="stylesheet" href="/static/layui/css/layui.css">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> -->
     <style type="text/css">
         a:link {color:DodgerBlue;}
         a:visited {color:DodgerBlue;}
@@ -33,7 +32,6 @@
         <li class="layui-nav-item"><a href="https://paike.feixu.site">蜗壳排课工具</a></li>
 		<li class="layui-nav-item layui-this"><a href="/">大雾实验工具</a></li>
 		<li class="layui-nav-item"><a href="https://wokebox.feixu.site">蜗壳作品集</a></li>
-		<li class="layui-nav-item"><a href="https://course.feixu.site">评课社区镜像站</a></li>
 	</ul>
     <div class="layui-container" style="max-width:850px;text-align:center;margin-top:8px;">
         <h1>{{name}}</h1>
@@ -64,14 +62,13 @@
 
         <center style="font-size:12px;line-height:250%;">
             <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;">浙ICP备2022018221号-1</a>
-            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33028202000901" target="_blank" style="color:#939393;"><img src="/static/beian.png" width="15px"/>浙公网安备33028202000901号</a>
+            <a href="https://beian.mps.gov.cn/#/query/webSearch?code=33028202000901" target="_blank" style="color:#939393;"><img src="/static/beian.png" width="15px"/>浙公网安备33028202000901</a>
         </center>
     </div>
     
     <canvas></canvas>
     <script src="/static/canvas-nest.min.js"></script>
     <script src="/static/layui/layui.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> -->
     <script>
         if (!(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))) document.getElementById("nav").style="";
         var util=layui.util;

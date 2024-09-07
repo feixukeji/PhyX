@@ -70,7 +70,7 @@ pip install latex2mathml
 
 1. 编写数据处理程序，置于 [module](module) 文件夹内。
 2. 将实验指导pdf（原讲义即可）、示例数据csv（示例数据主要体现格式，而数据不必正确合理）与png（生成png文件的的方法：在Excel中全选复制，在QQ聊天框或Windows画图软件中粘贴，然后另存为；若数据过多，请使用省略号，参考 exp23d；如有特别需要说明的，请用红色字体标注，参考 exp18）置于 static/experiment/expID/ 目录下，文件名**必须**与数据处理程序中的 `name()` 函数返回值一致。
-3. 修改模块清单 [modulelist.py](modulelist.py) 。
+3. 修改模块清单 [modulelist.py](modulelist.py)。
 4. 修改前端代码 [templates/index.html](templates/index.html)。
 5. 本地启动 [main.py](main.py) 测试运行。
 
