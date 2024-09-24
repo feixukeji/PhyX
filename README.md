@@ -1,7 +1,5 @@
 # 蜗壳大雾实验工具开发说明
 
-:stuck_out_tongue: You are welcomed to contribute, as long as you can read Chinese!
-
 如果你只是用户，请直接访问[蜗壳大雾实验工具](https://dawu.feixu.site/)网站。
 
 ## 目录结构说明
