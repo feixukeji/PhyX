@@ -267,6 +267,10 @@
             else if (options.num == 'guide') window.open("http://home.ustc.edu.cn/~lr_ustc/Guide.pdf");
             else if (options.num != '') window.location.href=options.num;
         });
+        if (!localStorage.getItem('used')) {
+            localStorage.setItem('used','true');
+            layer.alert("“大雾实验工具” is developed and run with &#128150 by <a href='https://github.com/feixukeji/' target='_blank' style='color:DodgerBlue;'>21-少物-sxl</a>, zxh, Brealid, qq, bzt.<br>We look forward to your participation in updating and maintaining this tool via <a href='https://github.com/feixukeji/PhyX' target='_blank' style='color:DodgerBlue;'>GitHub</a>.",{title:false,closeBtn:0,btn:["我明白了"]});
+        }
     </script>
 </body>
 </html>
