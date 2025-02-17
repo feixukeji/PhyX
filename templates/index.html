@@ -33,12 +33,6 @@
         <li class="layui-nav-item layui-this"><a href="">大雾实验工具</a></li>
         <li class="layui-nav-item"><a href="https://wokebox.feixu.site">蜗壳作品集</a></li>
     </ul>
-    <div id="tips" style="width:180px;position:fixed;top:150px;right:50px;line-height:150%;display:none;">
-        <center style="font-size:large;line-height:200%;">值得信赖</center>
-        <p>本工具开发源于“程序设计进阶与实践”课程大作业，开发组成员在该课程平均获绩 96.2，在“大学物理-基础实验”课程平均获绩 90.4！</p><br>
-        <center style="font-size:large;line-height:200%;">凝心聚力</center>
-        <p>本工具开发于 2022 年，并开源至 <a href="https://github.com/feixukeji/PhyX" target="_blank">GitHub</a>，现在实验要求可能有所改变，欢迎大家 <a href="https://github.com/feixukeji/PhyX/issues" target="_blank">提出 Issue</a> 或 Pull Request。</p>
-    </div>
     <div class="layui-container" style="max-width:700px;">
         <table style="margin:auto;"><tr>
             <td><img src="/static/icon.svg" alt="logo" width="55px" style="margin-right:10px;"/></td>
@@ -49,14 +43,10 @@
         </tr></table>
         <hr>
 
-        <center>
-            链接：<a href="https://jxzy.ustc.edu.cn/" target="_blank">物理实验教学中心</a>&nbsp;&nbsp;<a href="http://pems.ustc.edu.cn/" target="_blank">物理实验预约选课</a>
-        </center>
-        <center><a href="https://www.bilibili.com/video/BV193411G7aP" target="_blank">＞去B站观看宣传片＜</a></center>
-        <hr>
-
+        <center><a href="https://www.bilibili.com/video/BV193411G7aP" target="_blank">去B站观看宣传片</a></center>
         <center id="urlforpc" style="display:none;">电脑端体验更佳 https://dawu.feixu.site/</center>
-        <center><a href="https://qm.qq.com/cgi-bin/qm/qr?k=am1BQdmIpeI4afX5jzv8kPreSB4cqFYN&jump_from=webapi" target="_blank">加入QQ交流群：658804871</a></center><br>
+        <center>本项目已开源至 <a href="https://github.com/feixukeji/PhyX" target="_blank">GitHub</a>，期待你的加入！</center>
+        <br>
 
         <div class="layui-panel" style="max-width:500px;margin:auto;">
             <ul class="layui-menu" id="list">
@@ -249,7 +239,7 @@
     <script>
         var layer=layui.layer;
         if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) document.getElementById("urlforpc").style="";
-        else document.getElementById("nav").style="",document.getElementById("tips").style.display="";
+        else document.getElementById("nav").style="";
         var util=layui.util;
         util.fixbar({
             css:{right:20,bottom:70}
@@ -267,10 +257,6 @@
             else if (options.num == 'guide') window.open("http://home.ustc.edu.cn/~lr_ustc/Guide.pdf");
             else if (options.num != '') window.location.href=options.num;
         });
-        if (!localStorage.getItem('used')) {
-            localStorage.setItem('used','true');
-            layer.alert("“大雾实验工具” is developed and run with &#128150 by <a href='https://github.com/feixukeji/' target='_blank' style='color:DodgerBlue;'>21-少物-sxl</a>, zxh, Brealid, qq, bzt.<br>We look forward to your participation in updating and maintaining this tool via <a href='https://github.com/feixukeji/PhyX' target='_blank' style='color:DodgerBlue;'>GitHub</a>.",{title:false,closeBtn:0,btn:["我明白了"]});
-        }
     </script>
 </body>
 </html>
