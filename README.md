@@ -59,7 +59,7 @@ pip install -r requirements.txt
 或者通过 `conda` 配置环境：
 
 ```bash
-conda create -n phyx -c conda-forge python pip chardet flask lxml matplotlib numpy openpyxl pandas python-docx scipy sympy uncertainties
+conda create -n phyx -c conda-forge python=3.9.6 pip chardet flask lxml matplotlib numpy openpyxl pandas python-docx scipy sympy uncertainties
 conda activate phyx
 pip install latex2mathml
 ```
