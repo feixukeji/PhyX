@@ -10,6 +10,12 @@
     <link rel="icon" href="/static/icon.svg" type="image/x-icon"/>
     <link rel="stylesheet" href="/static/layui/css/layui.css">
     <style type="text/css">
+        .ws-header {
+            box-shadow: 0 1px 3px rgb(0 0 0 / 5%)
+        }
+        .ws-bg-light {
+            background-color: white !important
+        }
         a:link {color:DodgerBlue;}
         a:visited {color:DodgerBlue;}
         a:hover {color:Blue;}
@@ -26,14 +32,13 @@
     </script>
 </head>
 <body>
-    <ul class="layui-nav layui-nav-child-c" id="nav" style="display:none;">
+    <ul class="layui-nav layui-nav-child-c layui-bg-gray ws-header ws-bg-light" id="nav" style="display:none;">
         <li class="layui-nav-item"><a href="https://feixu.site">飞旭</a></li>
         <li class="layui-nav-item"><a href="https://myustc.feixu.site">我的科大APP</a></li>
         <li class="layui-nav-item"><a href="https://paike.feixu.site">蜗壳排课工具</a></li>
         <li class="layui-nav-item layui-this"><a href="/">大雾实验工具</a></li>
-        <li class="layui-nav-item"><a href="https://wokebox.feixu.site">蜗壳作品集</a></li>
     </ul>
-    <div class="layui-container" style="max-width:850px;text-align:center;margin-top:8px;">
+    <div class="layui-container" style="max-width:850px;text-align:center;margin-top:10px;">
         <h1>{{name}}</h1>
         <hr>
         
