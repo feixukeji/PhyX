@@ -1,4 +1,4 @@
-# 蜗壳大雾实验工具开发说明
+# 蜗壳大雾实验工具
 
 如果你只是用户，请直接访问[蜗壳大雾实验工具](https://dawu.feixu.site/)网站。
 
@@ -156,13 +156,6 @@ pip install latex2mathml
 - Pandas: [Documentation](https://pandas.pydata.org/docs/), [User Guide](https://pandas.pydata.org/docs/user_guide/index.html), [教程](https://www.runoob.com/pandas/pandas-tutorial.html)
 - Python-docx: [Documentation](https://python-docx.readthedocs.io/en/latest/), [Quickstart](https://python-docx.readthedocs.io/en/latest/user/quickstart.html)
 
-## To Do
-
-1. 大学物理二级、三级、四级实验数据处理程序的开发。
-2. 网页端直接输入和显示（目前只支持上传、下载文件）。
-3. 手写表格数字识别：把手写的实验数据转换成 Excel（csv）文件。
-4. PDF在线预览（目前在部分手机浏览器上无法预览）。
-
 ## Contributors
 
 - 组织策划&前端&前后端衔接程序&公式插入API&数据处理程序示例&开发文档编写&代码审查：孙旭磊
@@ -198,6 +191,13 @@ pip install latex2mathml
   |24|密立根油滴|近代|秦沁|
   |25|生活中的物理实验|生活|秦沁|
 
+## To Do
+
+1. 大学物理二级、三级、四级实验数据处理程序的开发。
+2. 网页端直接输入和显示（目前只支持上传、下载文件）。
+3. 手写表格数字识别：把手写的实验数据转换成 Excel（csv）文件。
+4. PDF在线预览（目前在部分手机浏览器上无法预览）。
+
 ## License
 
-PhyX is released under the [AGPL-3.0 license](./LICENSE).
+This project is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](./LICENSE).
