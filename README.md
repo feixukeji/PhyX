@@ -2,6 +2,8 @@
 
 PhyX is a web-based laboratory data processing tool for university physics experiments. It provides experiment-specific workflows for uploading CSV or Excel data, running calculations, generating plots, and exporting reports. The application also includes experiment guides, sample data, uncertainty reference tables, and an in-browser PDF viewer to support physics lab preparation and reporting.
 
+This project is part of Woke 365, a Gold Award winner at USTC's Yuqing Cup Campus Software Design Competition.
+
 ## Tech Stack
 
 - **Backend:** Python and Flask
